@@ -1,0 +1,31 @@
+---
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: indented_internal_methods
+
+Layout/LineLength:
+  Enabled: true
+  Max: 80
+
+Metrics/MethodLength:
+  Enabled: true
+  CountAsOne: ['array', 'hash']
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+...
