@@ -13,10 +13,11 @@ module ItaxCode
     # @example
     #
     #   ItaxCode.generate({
-    #     first_name: [String]
-    #     last_name:  [String]
-    #     birth_date: [Date, DateTime, Time]
+    #     surname:    [String]
+    #     name:       [String]
     #     gender:     [String]
+    #     birthdate:  [Date, DateTime, Time]
+    #     birthplace: [String]
     #   })
     #
     # @param [Hash] data The citizen data attributes
@@ -49,10 +50,11 @@ module ItaxCode
     # @example
     #
     #  ItaxCode.valid?(tax_code [String], {
-    #    first_name: [String]
-    #    last_name:  [String]
-    #    birth_date: [Date, DateTime, Time]
-    #    gender:     [String]
+    #     surname:    [String]
+    #     name:       [String]
+    #     gender:     [String]
+    #     birthdate:  [Date, DateTime, Time]
+    #     birthplace: [String]
     #  })
     #
     # @return [true, false]
