@@ -77,3 +77,8 @@ to adhere to the [code of conduct](https://github.com/matteoredz/itax_code/blob/
 
 Everyone interacting in the ItaxCode project's codebases, issue trackers,
 chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/matteoredz/itax_code/blob/master/CODE_OF_CONDUCT.md).
+
+## Credits
+
+I took my cue from [python-codicefiscale](https://github.com/fabiocaccamo/python-codicefiscale) repo,
+coded by [Fabio Caccamo](https://github.com/fabiocaccamo) to write ItaxCode Gem.
