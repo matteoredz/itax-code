@@ -1,0 +1,32 @@
+require "test_helper"
+
+module ItaxCode
+  class EncoderTest < ActiveSupport::TestCase
+    test "public interface" do
+      instance_methods = Encoder.instance_methods - Object.instance_methods
+      assert_equal %i[encode], instance_methods
+    end
+
+    test "#encode" do
+      assert_equal "RSSMRA80A01F205X",
+                   Encoder.new(
+                     surname: "Rossi",
+                     name: "Mario",
+                     gender: "M",
+                     birthdate: "1980-1-1",
+                     birthplace: "Milano"
+                   ).encode
+    end
+
+    test "#encode when name has more than 3 consonants" do
+      assert_equal "RSSGPR80A01F205D",
+                   Encoder.new(
+                     surname: "Rossi",
+                     name: "Ginepro",
+                     gender: "M",
+                     birthdate: "1980-1-1",
+                     birthplace: "Milano"
+                   ).encode
+    end
+  end
+end
