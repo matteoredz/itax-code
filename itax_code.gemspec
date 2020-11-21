@@ -3,6 +3,7 @@ require_relative "lib/itax_code/version"
 Gem::Specification.new do |spec|
   spec.name = "itax_code"
   spec.version = ItaxCode::VERSION
+  spec.licenses = ["MIT"]
   spec.authors = ["Matteo Rossi"]
   spec.email = ["mttrss5@gmail.com"]
   spec.summary = "Encode and decode Italian tax code (Codice Fiscale)."
