@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    itax_code (0.1.0)
+    itax_code (0.1.1)
       activesupport
       rake
 
