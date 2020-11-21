@@ -1,9 +1,12 @@
+*.rbc
+*.swp
+/_yardoc/
 /.bundle/
 /.byebug_history
 /.yardoc
-/_yardoc/
 /coverage/
 /doc/
+/itax_code-*.gem
 /pkg/
 /spec/reports/
 /tmp/
