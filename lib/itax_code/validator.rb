@@ -1,8 +1,8 @@
 module ItaxCode
   ##
-  # This class holds the TaxCode validation logic.
+  # This class holds the validation logic.
   #
-  # @param [Hash] data The citizen input data
+  # @param [Hash] data The user input data
 
   class Validator
     LENGTH = 16
@@ -14,7 +14,7 @@ module ItaxCode
     class << self
       ##
       # This method checks tax code standard length
-      # against citizen and business fical code standards.
+      # against user and business fical code standards.
       #
       # @param [String] code The tax code
       #

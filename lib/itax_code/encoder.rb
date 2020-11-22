@@ -2,11 +2,11 @@ module ItaxCode
   ##
   # This class handles the tax code generation logic.
   #
-  # @param [String]       surname    The citizen first name
-  # @param [String]       name       The citizen last name
-  # @param [String]       gender     The citizen gender
-  # @param [String, Date] birthdate  The citizen birthdate
-  # @param [String]       birthplace The citizen birthplace
+  # @param [String]       surname    The user first name
+  # @param [String]       name       The user last name
+  # @param [String]       gender     The user gender
+  # @param [String, Date] birthdate  The user birthdate
+  # @param [String]       birthplace The user birthplace
   #
   # @example
   #
