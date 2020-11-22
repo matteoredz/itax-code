@@ -1,6 +1,6 @@
 module ItaxCode
   ##
-  # This class handles the parsing logic for TaxCode module.
+  # This class handles the parsing logic.
   #
   # @param [String] tax_code
   #

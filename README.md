@@ -26,11 +26,11 @@ Or install it yourself as:
 ### Encode
 
 ```ruby
-ItaxCode.generate(
+ItaxCode.encode(
   surname: "Rossi",
   name: "Mario",
-  gender: "M",           # can be M or F
-  birthdate: "1980-1-1", # can be String, Time, Date or DateTime
+  gender: "M",           # "M" or "F"
+  birthdate: "1980-1-1", # String, Time, Date or DateTime
   birthplace: "Milano"
 )
 ```
@@ -80,5 +80,5 @@ chat rooms and mailing lists is expected to follow the [code of conduct](https:/
 
 ## Credits
 
-I took my cue from [python-codicefiscale](https://github.com/fabiocaccamo/python-codicefiscale) repo,
-coded by [Fabio Caccamo](https://github.com/fabiocaccamo) to write ItaxCode Gem.
+I took insipiration from [python-codicefiscale](https://github.com/fabiocaccamo/python-codicefiscale)
+repository, coded by [Fabio Caccamo](https://github.com/fabiocaccamo).
