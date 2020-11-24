@@ -21,13 +21,22 @@ module ItaxCode
   # @return [String] The encoded tax code
 
   class Encoder
+    class MissingDataError < StandardError; end
+
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]
       @name       = data[:name]
       @gender     = data[:gender].try :upcase
       @birthdate  = parsed_date data[:birthdate]
       @birthplace = data[:birthplace]
-      @utils      = utils
+
+      instance_variables.each do |ivar|
+        next if instance_variable_get(ivar).present?
+
+        raise MissingDataError, "missing #{ivar} value"
+      end
+
+      @utils = utils
     end
 
     ##
