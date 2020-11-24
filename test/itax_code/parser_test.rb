@@ -15,6 +15,11 @@ module ItaxCode
       assert_equal decoded_f, Parser.new("RSSMRA80A41F205B").decode
     end
 
+    test "#decode returns invalid code on invalid birthplace" do
+      assert_equal decoded_foreign,
+                   Parser.new("BRRDRN70M41Z602D").decode
+    end
+
     private
 
       def decoded
@@ -79,6 +84,39 @@ module ItaxCode
             birthdate_day: "41",
             birthplace: "F205",
             cin: "B"
+          }
+        }
+      end
+
+      def decoded_foreign
+        {
+          code: "BRRDRN70M41Z602D",
+          gender: "F",
+          birthdate: "1970-8-1",
+          birthplace: {
+            code: "Z602",
+            province: "EE",
+            name: "BRASILE"
+          },
+          omocodes: %w[
+            BRRDRN70M41Z602D
+            BRRDRN70M41Z60NS
+            BRRDRN70M41Z6LND
+            BRRDRN70M41ZSLNA
+            BRRDRN70M4MZSLNS
+            BRRDRN70MQMZSLNE
+            BRRDRN7LMQMZSLNP
+            BRRDRNTLMQMZSLNM
+          ],
+          raw: {
+            surname: "BRR",
+            name: "DRN",
+            birthdate: "70M41",
+            birthdate_year: "70",
+            birthdate_month: "M",
+            birthdate_day: "41",
+            birthplace: "Z602",
+            cin: "D"
           }
         }
       end

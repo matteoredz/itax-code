@@ -103,10 +103,10 @@ module ItaxCode
       )
     end
 
-    # def countries
-    #   @countries ||= JSON.parse(
-    #     File.read("#{__dir__}/data/countries.json")
-    #   )
-    # end
+    def countries
+      @countries ||= JSON.parse(
+        File.read("#{__dir__}/data/countries.json")
+      )
+    end
   end
 end
