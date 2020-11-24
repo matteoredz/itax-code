@@ -81,10 +81,16 @@ module ItaxCode
         "#{year}#{month}#{day}"
       end
 
-      def encode_birthplace
-        utils.municipalities.find do |m|
+      def encode_birthplace(src = utils.municipalities, exit: false)
+        place = src.find do |m|
           utils.slugged(m["name"]) == utils.slugged(birthplace)
-        end.try(:[], "code")
+        end
+
+        code = place.try(:[], "code")
+        return code if code.present?
+        return      if exit
+
+        encode_birthplace utils.countries, exit: true
       end
 
       def parsed_date(date)

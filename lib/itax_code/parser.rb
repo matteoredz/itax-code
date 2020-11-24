@@ -74,7 +74,7 @@ module ItaxCode
         end
       end
 
-      def decode_birthplace(src = utils.municipalities, exit = false)
+      def decode_birthplace(src = utils.municipalities, exit: false)
         places = src.select do |m|
           m["code"] == municipality_code
         end
@@ -85,7 +85,7 @@ module ItaxCode
         if place.nil?
           return if exit
 
-          decode_birthplace utils.countries, true
+          decode_birthplace utils.countries, exit: true
         else
           place["name"] = place["name"].gsub(" (soppresso)", "")
           place.deep_symbolize_keys

@@ -28,5 +28,16 @@ module ItaxCode
                      birthplace: "Milano"
                    ).encode
     end
+
+    test "#encode for foreign countries" do
+      assert_equal "BRRDRN70M41Z602D",
+                   Encoder.new(
+                     surname: "Berardi",
+                     name: "Adriana",
+                     gender: "F",
+                     birthdate: "1970-8-1",
+                     birthplace: "Brasile"
+                   ).encode
+    end
   end
 end
