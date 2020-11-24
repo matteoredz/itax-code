@@ -39,6 +39,39 @@ ItaxCode.encode(
 
 ```ruby
 ItaxCode.decode("RSSMRA80A01F205X")
+
+# Output
+#
+# {
+#   code: "RSSMRA80A01F205X",
+#   gender: "M",
+#   birthdate: "1980-1-1",
+#   birthplace: {
+#     code: "F205",
+#     province: "MI",
+#     name: "MILANO"
+#   },
+#   omocodes: %w[
+#     RSSMRA80A01F205X
+#     RSSMRA80A01F20RS
+#     RSSMRA80A01F2LRD
+#     RSSMRA80A01FNLRS
+#     RSSMRA80A0MFNLRK
+#     RSSMRA80ALMFNLRV
+#     RSSMRA8LALMFNLRG
+#     RSSMRAULALMFNLRD
+#   ],
+#   raw: {
+#     surname: "RSS",
+#     name: "MRA",
+#     birthdate: "80A01",
+#     birthdate_year: "80",
+#     birthdate_month: "A",
+#     birthdate_day: "01",
+#     birthplace: "F205",
+#     cin: "X"
+#   }
+# }
 ```
 
 ### Validate

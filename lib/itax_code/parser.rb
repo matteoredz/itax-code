@@ -11,9 +11,14 @@ module ItaxCode
   # @return [Hash]
 
   class Parser
+    class NoTaxCodeError      < StandardError; end
+    class InvalidTaxCodeError < StandardError; end
+
     def initialize(tax_code, utils = Utils.new)
-      @tax_code = (tax_code || "").upcase
       @utils    = utils
+      @tax_code = (tax_code || "").upcase
+      raise NoTaxCodeError if @tax_code.blank?
+      raise InvalidTaxCodeError unless Validator.standard_length?(@tax_code)
     end
 
     ##
@@ -74,13 +79,22 @@ module ItaxCode
         end
       end
 
-      def decode_birthplace
-        places = utils.municipalities
-                      .select { |m| m["code"] == municipality_code }
+      def decode_birthplace(src = utils.municipalities, exit: false)
+        places = src.select do |m|
+          m["code"] == municipality_code
+        end
+
         place = places.find { |m| !m["name"].include? "soppresso" }
-        place = (place.presence || places.last).deep_symbolize_keys
-        place[:name] = place[:name].gsub(" (soppresso)", "")
-        place
+        place = place.presence || places.last
+
+        if place.nil?
+          return if exit
+
+          decode_birthplace utils.countries, exit: true
+        else
+          place["name"] = place["name"].gsub(" (soppresso)", "")
+          place.deep_symbolize_keys
+        end
       end
 
       def municipality_code

@@ -21,13 +21,22 @@ module ItaxCode
   # @return [String] The encoded tax code
 
   class Encoder
+    class MissingDataError < StandardError; end
+
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]
       @name       = data[:name]
       @gender     = data[:gender].try :upcase
       @birthdate  = parsed_date data[:birthdate]
       @birthplace = data[:birthplace]
-      @utils      = utils
+
+      instance_variables.each do |ivar|
+        next if instance_variable_get(ivar).present?
+
+        raise MissingDataError, "missing #{ivar} value"
+      end
+
+      @utils = utils
     end
 
     ##
@@ -81,10 +90,16 @@ module ItaxCode
         "#{year}#{month}#{day}"
       end
 
-      def encode_birthplace
-        utils.municipalities.find do |m|
+      def encode_birthplace(src = utils.municipalities, exit: false)
+        place = src.find do |m|
           utils.slugged(m["name"]) == utils.slugged(birthplace)
-        end.try(:[], "code")
+        end
+
+        code = place.try(:[], "code")
+        return code if code.present?
+        return      if exit
+
+        encode_birthplace utils.countries, exit: true
       end
 
       def parsed_date(date)
