@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.licenses = ["MIT"]
   spec.authors = ["Matteo Rossi"]
   spec.email = ["mttrss5@gmail.com"]
-  spec.summary = "Encode and decode Italian tax code (Codice Fiscale)."
+  spec.summary = "Encode and decode Italian tax code (Codice Fiscale)"
   spec.homepage = "https://github.com/matteoredz/itax-code"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   spec.metadata["homepage_uri"] = spec.homepage
@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "activesupport"
-  spec.add_dependency "rake"
+  spec.add_dependency "activesupport", "~> 6.0"
+  spec.add_dependency "rake", "~> 13.0"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "minitest"

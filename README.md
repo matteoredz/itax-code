@@ -29,7 +29,7 @@ Or install it yourself as:
 ItaxCode.encode(
   surname: "Rossi",
   name: "Mario",
-  gender: "M",           # "M" or "F"
+  gender: "M", # "M" or "F"
   birthdate: "1980-1-1", # String, Time, Date or DateTime
   birthplace: "Milano"
 )

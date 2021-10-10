@@ -1,6 +1,5 @@
 module ItaxCode
-  ##
-  # This class handles the tax code generation logic.
+  # Handles the tax code generation logic.
   #
   # @param [String]       surname    The user first name
   # @param [String]       name       The user last name
@@ -9,7 +8,6 @@ module ItaxCode
   # @param [String]       birthplace The user birthplace
   #
   # @example
-  #
   #   ItaxCode::Encoder.new(
   #     surname: "Rossi",
   #     name: "Matteo",
@@ -19,33 +17,29 @@ module ItaxCode
   #   ).encode
   #
   # @return [String] The encoded tax code
-
   class Encoder
     class MissingDataError < StandardError; end
 
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]
       @name       = data[:name]
-      @gender     = data[:gender].try :upcase
-      @birthdate  = parsed_date data[:birthdate]
+      @gender     = data[:gender]&.upcase
+      @birthdate  = Date.parse(data[:birthdate].to_s)
       @birthplace = data[:birthplace]
+      @utils      = utils
 
       instance_variables.each do |ivar|
         next if instance_variable_get(ivar).present?
 
         raise MissingDataError, "missing #{ivar} value"
       end
-
-      @utils = utils
     end
 
-    ##
-    # This method calculates the tax code.
+    # Computes the tax code from its components.
     #
     # @return [String] The calculated tax code
-
     def encode
-      code = encode_surname
+      code  = encode_surname
       code += encode_name
       code += encode_birthdate
       code += encode_birthplace
@@ -55,29 +49,23 @@ module ItaxCode
 
     private
 
-      attr_accessor :surname,
-                    :name,
-                    :gender,
-                    :birthdate,
-                    :birthplace,
-                    :utils
+      attr_accessor :surname, :name, :gender, :birthdate, :birthplace, :utils
 
       def encode_surname
-        str        = utils.slugged(surname).chars
-        consonants = utils.extract_consonants str
-        vowels     = utils.extract_vowels str
+        chars      = utils.slugged(surname).chars
+        consonants = utils.extract_consonants chars
+        vowels     = utils.extract_vowels chars
         "#{consonants[0..2]}#{vowels[0..2]}XXX"[0..2].upcase
       end
 
       def encode_name
-        str        = utils.slugged(name).chars
-        consonants = utils.extract_consonants str
-        vowels     = utils.extract_vowels str
+        chars      = utils.slugged(name).chars
+        consonants = utils.extract_consonants chars
+        vowels     = utils.extract_vowels chars
 
         if consonants.length > 3
-          arr = consonants.dup.chars
-          arr.delete_at 1
-          consonants = arr.join
+          consonants =
+            consonants.chars.values_at(0, 2..consonants.chars.size).join
         end
 
         "#{consonants[0..2]}#{vowels[0..2]}XXX"[0..2].upcase
@@ -90,23 +78,15 @@ module ItaxCode
         "#{year}#{month}#{day}"
       end
 
-      def encode_birthplace(src = utils.municipalities, exit: false)
-        place = src.find do |m|
-          utils.slugged(m["name"]) == utils.slugged(birthplace)
+      def encode_birthplace(src = utils.cities, exit: false)
+        place = src.find do |item|
+          utils.slugged(birthplace) == utils.slugged(item["name"])
         end
 
         code = place.try(:[], "code")
         return code if code.present?
-        return      if exit
 
-        encode_birthplace utils.countries, exit: true
-      end
-
-      def parsed_date(date)
-        case date.class.name
-        when "Date", "Time", "DateTime" then date
-        else Date.parse(date)
-        end
+        exit || encode_birthplace(utils.countries, exit: true)
       end
   end
 end

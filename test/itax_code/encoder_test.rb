@@ -39,5 +39,17 @@ module ItaxCode
                      birthplace: "Brasile"
                    ).encode
     end
+
+    test "#encode raises MissingDataError" do
+      assert_raises "Encoder::MissingDataError" do
+        Encoder.new(birthdate: "1980-1-1").encode
+      end
+    end
+
+    test "#encode raises Date::Error on malformed birthdate" do
+      assert_raises "Date::Error" do
+        Encoder.new.encode
+      end
+    end
   end
 end
