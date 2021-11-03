@@ -15,26 +15,20 @@ module ItaxCode
     #
     # @return [Array]
     def list
-      codes = []
       chars = tax_code[0..14].chars
-
-      utils.omocodia_subs_indexes.reverse_each do |i|
-        chars[i] = utils.omocodia_decode(chars[i])
-      end
-
-      codes << code_from(chars)
-
-      utils.omocodia_subs_indexes.reverse_each do |i|
-        chars[i] = utils.omocodia_encode(chars[i])
-        codes << code_from(chars)
-      end
-
-      codes
+      (omocodes(:decode, chars) + omocodes(:encode, chars)).uniq
     end
 
     private
 
-      def code_from(chars)
+      def omocodes(action, chars)
+        utils.omocodia_subs_indexes.reverse.map do |i|
+          chars[i] = utils.public_send("omocodia_#{action}".to_sym, chars[i])
+          omocode(chars)
+        end
+      end
+
+      def omocode(chars)
         code = chars.join
         code + utils.encode_cin(code)
       end

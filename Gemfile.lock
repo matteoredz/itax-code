@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     itax_code (0.1.4)
-      activesupport (~> 6.0)
-      rake (~> 13.0)
+      activesupport
 
 GEM
   remote: https://rubygems.org/
@@ -65,6 +64,7 @@ DEPENDENCIES
   itax_code!
   minitest
   mocha
+  rake
   rubocop
   rubocop-minitest
   rubocop-performance

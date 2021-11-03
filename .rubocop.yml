@@ -21,6 +21,11 @@ Layout/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/ClassLength:
+  Enabled: true
+  Exclude:
+    - 'test/**/*'
+
 Metrics/MethodLength:
   Enabled: true
   CountAsOne: ['array', 'hash']
