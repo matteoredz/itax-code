@@ -6,6 +6,10 @@ require:
 Bundler/OrderedGems:
   Enabled: false
 
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+  AllowAdjacentOneLineDefs: true
+
 Layout/IndentationConsistency:
   Enabled: true
   EnforcedStyle: indented_internal_methods
@@ -13,6 +17,14 @@ Layout/IndentationConsistency:
 Layout/LineLength:
   Enabled: true
   Max: 80
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: true
+  Exclude:
+    - 'test/**/*'
 
 Metrics/MethodLength:
   Enabled: true

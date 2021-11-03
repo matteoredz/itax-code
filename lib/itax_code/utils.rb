@@ -1,3 +1,5 @@
+require "csv"
+
 module ItaxCode
   class Utils
     def regex
@@ -97,16 +99,12 @@ module ItaxCode
       cin_remainders[tot % 26]
     end
 
-    def municipalities
-      @municipalities ||= JSON.parse(
-        File.read("#{__dir__}/data/municipalities.json")
-      )
+    def cities
+      CSV.foreach("#{__dir__}/data/cities.csv", headers: true)
     end
 
     def countries
-      @countries ||= JSON.parse(
-        File.read("#{__dir__}/data/countries.json")
-      )
+      CSV.foreach("#{__dir__}/data/countries.csv", headers: true)
     end
   end
 end

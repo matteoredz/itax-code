@@ -1,5 +1,6 @@
-require "itax_code/version"
 require "active_support/all"
+
+require "itax_code/version"
 require "itax_code/utils"
 require "itax_code/encoder"
 require "itax_code/parser"
@@ -7,58 +8,43 @@ require "itax_code/validator"
 
 module ItaxCode
   class << self
-    ##
-    # This method encodes user tax code.
+    # Encodes user tax code.
     #
-    # @example
+    # @param [Hash] data The user attributes
     #
-    #   ItaxCode.encode({
-    #     surname:    [String]
-    #     name:       [String]
-    #     gender:     [String]
-    #     birthdate:  [Date, DateTime, Time]
-    #     birthplace: [String]
-    #   })
-    #
-    # @param [Hash] data The user data attributes
+    # @option data [String]       :surname
+    # @option data [String]       :name
+    # @option data [String]       :gender
+    # @option data [String, Date] :birthdate
+    # @option data [String]       :birthplace
     #
     # @return [String]
-
     def encode(data)
       Encoder.new(data).encode
     end
 
-    ##
-    # This method decodes tax code in its components.
-    #
-    # @example
-    #
-    #   ItaxCode.decode("CCCFBA85D03L219P")
+    # Decodes tax code in its components.
     #
     # @param [String] tax_code The user tax code
     #
     # @return [Hash]
-
     def decode(tax_code)
       Parser.new(tax_code).decode
     end
 
-    ##
-    # This method check given tax code validity
-    # against new one encoded from user informations.
+    # Checks the given tax code validity against new one
+    # encoded from user informations.
     #
-    # @example
+    # @param [String] tax_code The user tax code
+    # @param [Hash]   data     The user attributes
     #
-    #  ItaxCode.valid?(tax_code [String], {
-    #     surname:    [String]
-    #     name:       [String]
-    #     gender:     [String]
-    #     birthdate:  [Date, DateTime, Time]
-    #     birthplace: [String]
-    #  })
+    # @option data [String]       :surname
+    # @option data [String]       :name
+    # @option data [String]       :gender
+    # @option data [String, Date] :birthdate
+    # @option data [String]       :birthplace
     #
-    # @return [true, false]
-
+    # @return [Boolean]
     def valid?(tax_code, data)
       Validator.new(data).valid?(tax_code)
     end

@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.licenses = ["MIT"]
   spec.authors = ["Matteo Rossi"]
   spec.email = ["mttrss5@gmail.com"]
-  spec.summary = "Encode and decode Italian tax code (Codice Fiscale)."
+  spec.summary = "Encode and decode Italian tax code (Codice Fiscale)"
   spec.homepage = "https://github.com/matteoredz/itax-code"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   spec.metadata["homepage_uri"] = spec.homepage
@@ -24,11 +24,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport"
-  spec.add_dependency "rake"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "mocha"
+  spec.add_development_dependency "rake"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-minitest"
   spec.add_development_dependency "rubocop-performance"
