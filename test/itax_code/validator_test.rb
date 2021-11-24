@@ -26,7 +26,7 @@ module ItaxCode
           surname: "Rossi",
           name: "Mario",
           gender: "M",
-          birthdate: "1980-1-1",
+          birthdate: "1980-01-01",
           birthplace: "Milano"
         }
       end

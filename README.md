@@ -29,9 +29,9 @@ Or install it yourself as:
 ItaxCode.encode(
   surname: "Rossi",
   name: "Mario",
-  gender: "M", # "M" or "F"
-  birthdate: "1980-1-1", # String, Time, Date or DateTime
-  birthplace: "Milano"
+  gender: "M", # M|F
+  birthdate: "1980-01-01", # String|Time|Date|DateTime
+  birthplace: "Milano" # Name(Milano)|code(F205)
 )
 ```
 
@@ -45,7 +45,7 @@ ItaxCode.decode("RSSMRA80A01F205X")
 # {
 #   code: "RSSMRA80A01F205X",
 #   gender: "M",
-#   birthdate: "1980-1-1",
+#   birthdate: "1980-01-01",
 #   birthplace: {
 #     code: "F205",
 #     province: "MI",
@@ -83,7 +83,7 @@ ItaxCode.valid?(
     surname: "Rossi",
     name: "Mario",
     gender: "M",
-    birthdate: "1980-1-1",
+    birthdate: "1980-01-01",
     birthplace: "Milano"
   }
 )

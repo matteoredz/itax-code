@@ -26,7 +26,7 @@ module ItaxCode
         {
           code: "CCCFBA85D03L219P",
           gender: "M",
-          birthdate: "1985-4-3",
+          birthdate: "1985-04-03",
           birthplace: {
             code: "L219",
             province: "TO",
@@ -59,7 +59,7 @@ module ItaxCode
         {
           code: "RSSMRA80A41F205B",
           gender: "F",
-          birthdate: "1980-1-1",
+          birthdate: "1980-01-01",
           birthplace: {
             code: "F205",
             province: "MI",
@@ -92,7 +92,7 @@ module ItaxCode
         {
           code: "BRRDRN70M41Z602D",
           gender: "F",
-          birthdate: "1970-8-1",
+          birthdate: "1970-08-01",
           birthplace: {
             code: "Z602",
             province: "EE",
