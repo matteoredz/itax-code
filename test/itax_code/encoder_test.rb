@@ -69,13 +69,13 @@ module ItaxCode
       end
     end
 
-    test "#encode raises Date::Error on malformed birthdate" do
-      assert_raises Date::Error do
+    test "#encode raises ArgumentError on malformed birthdate" do
+      assert_raises ArgumentError do
         Encoder.new(
           surname: "Rossi",
           name: "Mario",
           gender: "M",
-          birthdate: "not-a-valid-date",
+          birthdate: "invalid-date",
           birthplace: "Milano"
         ).encode
       end

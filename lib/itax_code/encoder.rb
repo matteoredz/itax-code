@@ -29,7 +29,7 @@ module ItaxCode
       @utils      = utils
       validate_data_presence!
 
-      @birthdate = Date.parse(@birthdate)
+      @birthdate = parse_birthdate!
     end
 
     # Computes the tax code from its components.
@@ -93,6 +93,12 @@ module ItaxCode
 
           raise MissingDataError, "missing #{ivar} value"
         end
+      end
+
+      def parse_birthdate!
+        Date.parse(birthdate)
+      rescue StandardError
+        raise ArgumentError, "#{birthdate} is not a valid date"
       end
   end
 end
