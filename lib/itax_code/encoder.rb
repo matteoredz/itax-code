@@ -10,9 +10,9 @@ module ItaxCode
   # @example
   #   ItaxCode::Encoder.new(
   #     surname: "Rossi",
-  #     name: "Matteo",
+  #     name: "Mario",
   #     gender: "M",
-  #     birthdate: "1990-08-23",
+  #     birthdate: "1980-01-01",
   #     birthplace: "Milano"
   #   ).encode
   #
@@ -24,15 +24,12 @@ module ItaxCode
       @surname    = data[:surname]
       @name       = data[:name]
       @gender     = data[:gender]&.upcase
-      @birthdate  = Date.parse(data[:birthdate].to_s)
+      @birthdate  = data[:birthdate].to_s
       @birthplace = data[:birthplace]
       @utils      = utils
+      validate_data_presence!
 
-      instance_variables.each do |ivar|
-        next if instance_variable_get(ivar).present?
-
-        raise MissingDataError, "missing #{ivar} value"
-      end
+      @birthdate = parse_birthdate!
     end
 
     # Computes the tax code from its components.
@@ -78,15 +75,30 @@ module ItaxCode
         "#{year}#{month}#{day}"
       end
 
-      def encode_birthplace(src = utils.cities, exit: false)
-        place = src.find do |item|
-          utils.slugged(birthplace) == utils.slugged(item["name"])
-        end
+      def encode_birthplace(src = utils.cities, stop: false)
+        lookup_key = birthplace.match?(/^\w{1}\d{3}$/) ? "code" : "name"
+        place_slug = utils.slugged(birthplace)
+        place_item = src.find { |i| place_slug == utils.slugged(i[lookup_key]) }
 
-        code = place.try(:[], "code")
+        code = place_item.try(:[], "code")
         return code if code.present?
+        raise MissingDataError, "no code found for #{birthplace}" if stop
 
-        exit || encode_birthplace(utils.countries, exit: true)
+        encode_birthplace(utils.countries, stop: true)
+      end
+
+      def validate_data_presence!
+        instance_variables.each do |ivar|
+          next if instance_variable_get(ivar).present?
+
+          raise MissingDataError, "missing #{ivar} value"
+        end
+      end
+
+      def parse_birthdate!
+        Date.parse(birthdate)
+      rescue StandardError
+        raise ArgumentError, "#{birthdate} is not a valid date"
       end
   end
 end

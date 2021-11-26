@@ -33,7 +33,7 @@ module ItaxCode
       {
         code: tax_code,
         gender: gender,
-        birthdate: [year, month, day].join("-"),
+        birthdate: Date.parse([year, month, day].join("-")).to_s,
         birthplace: birthplace,
         omocodes: Omocode.new(tax_code).list,
         raw: raw
