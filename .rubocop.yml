@@ -3,6 +3,9 @@ require:
   - rubocop-minitest
   - rubocop-performance
 
+AllCops:
+  TargetRubyVersion: 2.5
+
 Bundler/OrderedGems:
   Enabled: false
 
