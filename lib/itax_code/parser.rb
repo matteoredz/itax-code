@@ -77,15 +77,12 @@ module ItaxCode
         end
       end
 
-      def decode_birthplace(src = utils.cities, exit: false)
-        place = src.find do |item|
-          item["code"] == city_code && !item["name"].include?("soppresso")
-        end
+      def decode_birthplace(src = utils.cities, stop: false)
+        place = src.find { |item| item["code"] == city_code }
 
         if place.nil?
-          exit ? return : decode_birthplace(utils.countries, exit: true)
+          stop ? return : decode_birthplace(utils.countries, stop: true)
         else
-          place["name"] = place["name"].gsub(" (soppresso)", "")
           place.to_h.deep_symbolize_keys
         end
       end
