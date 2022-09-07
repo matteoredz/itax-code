@@ -25,6 +25,11 @@ Layout/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'rakelib/**/*'
+
 Metrics/ClassLength:
   Enabled: true
   Exclude:
