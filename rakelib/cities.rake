@@ -6,11 +6,12 @@ require "uri"
 namespace :cities do
   desc "Import cities from Istat remote CSV"
   task :import do
-    uri = URI("https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv")
     tempfile = Tempfile.new
-    tempfile.write Net::HTTP.get(uri)
+    tempfile.write Net::HTTP.get(
+      URI("https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv")
+    )
 
-    output_string = CSV.generate(quote_char: '"', force_quotes: true) do |csv|
+    output_string = CSV.generate do |csv|
       csv << %w[code province name]
 
       CSV.foreach(

@@ -20,7 +20,7 @@ Layout/IndentationConsistency:
 
 Layout/LineLength:
   Enabled: true
-  Max: 80
+  Max: 100
 
 Metrics/AbcSize:
   Enabled: false

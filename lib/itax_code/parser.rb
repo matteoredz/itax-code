@@ -27,8 +27,7 @@ module ItaxCode
     def decode
       year        = decode_year
       month       = utils.months.find_index(raw[:birthdate_month]) + 1
-      day, gender = decode_day_and_gender
-      birthplace  = decode_birthplace
+      day, gender = day_and_gender
 
       {
         code: tax_code,
@@ -66,22 +65,16 @@ module ItaxCode
         year
       end
 
-      def decode_day_and_gender
+      def day_and_gender
         day = utils.omocodia_decode(raw[:birthdate_day]).to_i
-
-        if day > 40
-          day -= 40
-          [day, "F"]
-        else
-          [day, "M"]
-        end
+        day > 40 ? [day - 40, "F"] : [day, "M"]
       end
 
-      def decode_birthplace(src = utils.cities, stop: false)
+      def birthplace(src = utils.cities, stop: false)
         place = src.find { |item| item["code"] == city_code }
 
         if place.nil?
-          stop ? return : decode_birthplace(utils.countries, stop: true)
+          birthplace(utils.countries, stop: true) unless stop
         else
           place.to_h.deep_symbolize_keys
         end
