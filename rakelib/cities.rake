@@ -8,23 +8,19 @@ namespace :cities do
   task :import do
     tempfile = Tempfile.new
     tempfile.write Net::HTTP.get(
-      URI("https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv")
+      URI("https://raw.githubusercontent.com/italia/anpr/master/src/archivi/ANPR_archivio_comuni.csv")
     )
 
     output_string = CSV.generate do |csv|
-      csv << %w[code province name]
+      csv << %w[code province name created_on deleted_on]
 
-      CSV.foreach(
-        tempfile.path,
-        col_sep: ";",
-        encoding: "iso-8859-1:utf-8",
-        headers: true,
-        row_sep: "\r\n"
-      ) do |row|
+      CSV.foreach(tempfile.path, headers: true) do |row|
         csv << [
-          row["Codice Catastale del comune"],
-          row["Sigla automobilistica"],
-          row["Denominazione in italiano"].upcase
+          row["CODCATASTALE"],
+          row["SIGLAPROVINCIA"],
+          row["DENOMINAZIONE_IT"].upcase,
+          row["DATAISTITUZIONE"],
+          row["DATACESSAZIONE"]
         ]
       end
     end
