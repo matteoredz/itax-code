@@ -66,8 +66,8 @@ module ItaxCode
             code: "F205",
             province: "MI",
             name: "MILANO",
-            created_on: "1873-06-23",
-            deleted_on: "1904-06-23"
+            created_on: "1962-12-30",
+            deleted_on: "1997-07-25"
           },
           omocodes: %w[
             RSSMRA80A41F205B
