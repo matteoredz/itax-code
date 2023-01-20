@@ -3,11 +3,12 @@
 /_yardoc/
 /.bundle/
 /.byebug_history
+/.ruby-version
 /.yardoc
 /coverage/
 /doc/
+/Gemfile.lock
 /itax_code-*.gem
 /pkg/
 /spec/reports/
 /tmp/
-Gemfile.lock
