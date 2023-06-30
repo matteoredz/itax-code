@@ -92,8 +92,7 @@ module ItaxCode
       tot = 0
 
       code.chars.each_with_index do |char, index|
-        tot += cin_odds[char.to_sym]  if (index + 1).odd?
-        tot += cin_evens[char.to_sym] if (index + 1).even?
+        tot += (index + 1).odd? ? cin_odds[char.to_sym] : cin_evens[char.to_sym]
       end
 
       cin_remainders[tot % 26]

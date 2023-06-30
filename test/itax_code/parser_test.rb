@@ -30,7 +30,9 @@ module ItaxCode
           birthplace: {
             code: "L219",
             province: "TO",
-            name: "TORINO"
+            name: "TORINO",
+            created_on: "1889-08-12",
+            deleted_on: "9999-12-31"
           },
           omocodes: %w[
             CCCFBA85D03L219P
@@ -63,7 +65,9 @@ module ItaxCode
           birthplace: {
             code: "F205",
             province: "MI",
-            name: "MILANO"
+            name: "MILANO",
+            created_on: "1962-12-30",
+            deleted_on: "1997-07-25"
           },
           omocodes: %w[
             RSSMRA80A41F205B
