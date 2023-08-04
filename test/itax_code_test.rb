@@ -16,7 +16,7 @@ class ItaxCodeTest < ActiveSupport::TestCase
     assert_equal Hash, klass.decode("RSSMRA80A41F205B").class
   end
 
-  test "#valid?" do
+  test "#valid? with data" do
     assert klass.valid?(
       "RSSMRA80A10F205Z",
       {
@@ -26,6 +26,17 @@ class ItaxCodeTest < ActiveSupport::TestCase
         birthdate: Date.new(1980, 1, 10),
         birthplace: "Milano"
       }
+    )
+  end
+
+  test "#valid? empty data" do
+    assert klass.valid?("RSSMRA80A10F205Z")
+  end
+
+  test "#valid? incomplete_data" do
+    assert klass.valid?("RSSMRA80A10F205Z",
+      { surname: "Rossi", name: "Mario" },
+      true
     )
   end
 

@@ -35,8 +35,9 @@ module ItaxCode
     # Checks the given tax code validity against new one
     # encoded from user informations.
     #
-    # @param [String] tax_code The user tax code
-    # @param [Hash]   data     The user attributes
+    # @param [String]  tax_code The user tax code
+    # @param [Hash]    data     The user attributes
+    # @param [Boolean] incomplete_data
     #
     # @option data [String]       :surname
     # @option data [String]       :name
@@ -45,7 +46,18 @@ module ItaxCode
     # @option data [String]       :birthplace
     #
     # @return [Boolean]
-    def valid?(tax_code, data)
+    def valid?(tax_code, data = {}, incomplete_data = false)
+      if incomplete_data || data.empty?
+        decoded = decode(tax_code)
+        data = {
+          surname: data.dig(:surname) || decoded.dig(:raw)&.dig(:surname),
+          name: data.dig(:name) || decoded.dig(:raw)&.dig(:name),
+          gender: data.dig(:gender) || decoded.dig(:gender),
+          birthdate: data.dig(:birthdate) || decoded.dig(:birthdate),
+          birthplace: data.dig(:birthplace) || decoded.dig(:birthplace)&.dig(:code)
+        }
+      end
+
       Validator.new(data).valid?(tax_code)
     end
   end
