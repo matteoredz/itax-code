@@ -5,6 +5,7 @@ require:
   - rubocop-rake
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5
 
 Bundler/OrderedGems:
@@ -40,9 +41,6 @@ Metrics/MethodLength:
   CountAsOne: ['array', 'hash']
 
 Style/Documentation:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/StringLiterals:

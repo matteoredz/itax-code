@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 module ItaxCode
@@ -5,6 +7,7 @@ module ItaxCode
     test "public interface" do
       instance_methods = Validator.instance_methods - Object.instance_methods
       class_methods    = Validator.methods - Object.methods
+
       assert_equal %i[valid?], instance_methods
       assert_equal %i[standard_length?], class_methods
     end

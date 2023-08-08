@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "itax_code/omocode"
 
 module ItaxCode
@@ -30,7 +32,7 @@ module ItaxCode
         gender: gender,
         birthdate: birthdate,
         birthplace: birthplace,
-        omocodes: Omocode.new(tax_code).list,
+        omocodes: Omocode.new(tax_code).omocodes,
         raw: raw
       }
     end

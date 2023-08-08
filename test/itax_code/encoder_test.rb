@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 module ItaxCode
   class EncoderTest < ActiveSupport::TestCase
     test "public interface" do
       instance_methods = Encoder.instance_methods - Object.instance_methods
+
       assert_equal %i[encode], instance_methods
     end
 
