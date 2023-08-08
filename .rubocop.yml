@@ -5,6 +5,7 @@ require:
   - rubocop-rake
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5
 
 Bundler/OrderedGems:

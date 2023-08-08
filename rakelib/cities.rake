@@ -27,9 +27,7 @@ namespace :cities do
       end
     end
 
-    File.open("lib/itax_code/data/cities.csv", "w") do |output_file|
-      output_file.write(output_string)
-    end
+    File.write("lib/itax_code/data/cities.csv", output_string)
   ensure
     tempfile.close
     tempfile.unlink

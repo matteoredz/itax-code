@@ -62,9 +62,7 @@ module ItaxCode
         consonants = utils.extract_consonants chars
         vowels     = utils.extract_vowels chars
 
-        if consonants.length > 3
-          consonants = consonants.chars.values_at(0, 2..consonants.chars.size).join
-        end
+        consonants = consonants.chars.values_at(0, 2..consonants.size).join if consonants.length > 3
 
         "#{consonants[0..2]}#{vowels[0..2]}XXX"[0..2].upcase
       end

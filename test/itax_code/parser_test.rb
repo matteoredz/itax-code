@@ -6,6 +6,7 @@ module ItaxCode
   class ParserTest < ActiveSupport::TestCase
     test "public interface" do
       instance_methods = Parser.instance_methods - Object.instance_methods
+
       assert_equal %i[decode], instance_methods
     end
 
