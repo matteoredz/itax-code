@@ -11,6 +11,9 @@ AllCops:
 Bundler/OrderedGems:
   Enabled: false
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/EmptyLineBetweenDefs:
   Enabled: true
   AllowAdjacentOneLineDefs: true
