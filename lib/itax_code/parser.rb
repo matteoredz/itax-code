@@ -30,7 +30,7 @@ module ItaxCode
         gender: gender,
         birthdate: birthdate,
         birthplace: birthplace,
-        omocodes: Omocode.new(tax_code).list,
+        omocodes: Omocode.new(tax_code).omocodes,
         raw: raw
       }
     end

@@ -68,8 +68,14 @@ module ItaxCode
       omocodia.values.join
     end
 
-    def omocodia_subs_indexes
-      [6, 7, 9, 10, 12, 13, 14]
+    def omocodia_indexes
+      [6, 7, 9, 10, 12, 13, 14].reverse
+    end
+
+    def omocodia_indexes_combos
+      (1..omocodia_indexes.size).flat_map do |index|
+        omocodia_indexes.combination(index).to_a
+      end
     end
 
     def omocodia_encode(val)

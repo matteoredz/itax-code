@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ItaxCode
   class Omocode
     attr_reader :tax_code, :utils
@@ -11,26 +13,35 @@ module ItaxCode
       @utils    = utils
     end
 
-    # Computes the omocodes from a given tax_code.
+    # Computes the omocodes from a given tax_code by first identifying the original
+    # tax_code and then appending all the omocodes.
     #
     # @return [Array]
-    def list
-      chars = tax_code[0..14].chars
-      (omocodes(:decode, chars) + omocodes(:encode, chars)).uniq
+    def omocodes
+      [original_omocode] + utils.omocodia_indexes_combos.map do |combo|
+        omocode(combo, ->(char) { utils.omocodia_encode(char) })
+      end
+    end
+
+    # The original omocode is the one that have all the omocody indexes decoded
+    # as number, and from which any of its omocodes are generated.
+    #
+    # @return [String]
+    def original_omocode
+      omocode(utils.omocodia_indexes, ->(char) { utils.omocodia_decode(char) })
     end
 
     private
 
-      def omocodes(action, chars)
-        utils.omocodia_subs_indexes.reverse.map do |i|
-          chars[i] = utils.public_send("omocodia_#{action}".to_sym, chars[i])
-          omocode(chars)
-        end
-      end
+      def omocode(indexes, translation)
+        chars = tax_code[0..14].chars
 
-      def omocode(chars)
-        code = chars.join
-        code + utils.encode_cin(code)
+        indexes.each do |index|
+          chars[index] = translation.call(chars[index])
+        end
+
+        omocode = chars.join
+        omocode + utils.encode_cin(omocode)
       end
   end
 end
