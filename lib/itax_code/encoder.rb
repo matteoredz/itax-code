@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ItaxCode
   # Handles the tax code generation logic.
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "csv"
 
 module ItaxCode
@@ -10,9 +12,7 @@ module ItaxCode
     end
 
     def slugged(str, separator = "-")
-      str.gsub!(/\s*@\s*/, " at ")
-      str.gsub!(/\s*&\s*/, " and ")
-      str.parameterize(separator: separator)
+      str.gsub(/\s*@\s*/, " at ").gsub(/\s*&\s*/, " and ").parameterize(separator: separator)
     end
 
     def months
