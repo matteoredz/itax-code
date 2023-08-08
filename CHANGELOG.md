@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/matteoredz/itax-code/compare/v0.4.0...v0.4.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* disable MFA as it breaks the CI ([#20](https://github.com/matteoredz/itax-code/issues/20)) ([7c9568e](https://github.com/matteoredz/itax-code/commit/7c9568e66618e324d4da137ddc6d0680b6900daa))
+
 ## [0.4.0](https://github.com/matteoredz/itax-code/compare/v0.3.0...v0.4.0) (2023-08-08)
 
 
