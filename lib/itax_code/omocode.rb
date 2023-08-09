@@ -19,7 +19,7 @@ module ItaxCode
     # @return [Array]
     def omocodes
       [original_omocode] + utils.omocodia_indexes_combos.map do |combo|
-        omocode(combo, ->(char) { utils.omocodia_encode(char) })
+        omocode(original_omocode, combo, ->(char) { utils.omocodia_encode(char) })
       end
     end
 
@@ -28,13 +28,15 @@ module ItaxCode
     #
     # @return [String]
     def original_omocode
-      omocode(utils.omocodia_indexes, ->(char) { utils.omocodia_decode(char) })
+      @original_omocode ||= omocode(
+        tax_code, utils.omocodia_indexes, ->(char) { utils.omocodia_decode(char) }
+      )
     end
 
     private
 
-      def omocode(indexes, translation)
-        chars = tax_code[0..14].chars
+      def omocode(code, indexes, translation)
+        chars = code[0..14].chars
 
         indexes.each do |index|
           chars[index] = translation.call(chars[index])
