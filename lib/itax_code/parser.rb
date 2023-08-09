@@ -13,14 +13,17 @@ module ItaxCode
   #
   # @return [Hash]
   class Parser
-    class NoTaxCodeError      < StandardError; end
+    class NoTaxCodeError < StandardError; end
+    class InvalidControlInternalNumberError < StandardError; end
     class InvalidTaxCodeError < StandardError; end
 
     def initialize(tax_code, utils = Utils.new)
       @tax_code = tax_code&.upcase
-      @utils    = utils
       raise NoTaxCodeError if @tax_code.blank?
       raise InvalidTaxCodeError unless Validator.standard_length?(@tax_code)
+
+      @utils = utils
+      raise InvalidControlInternalNumberError if raw[:cin] != @utils.encode_cin(tax_code)
     end
 
     # Decodes the tax code into its components.

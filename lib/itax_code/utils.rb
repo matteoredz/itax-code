@@ -27,24 +27,49 @@ module ItaxCode
       %w[a e i o u]
     end
 
-    def cin_odds
+    def cin
       {
-        "0": 1, "1": 0, "2": 5, "3": 7, "4": 9, "5": 13, "6": 15, "7": 17, "8": 19, "9": 21,
-        A: 1, B: 0, C: 5, D: 7, E: 9, F: 13, G: 15, H: 17, I: 19, J: 21, K: 2,  L: 4, M: 18,
-        N: 20, O: 11, P: 3, Q: 6, R: 8, S: 12, T: 14, U: 16, V: 10, W: 22, X: 25, Y: 24, Z: 23
-      }
-    end
-
-    def cin_evens
-      {
-        "0": 0, "1": 1,  "2": 2,  "3": 3,  "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9,
-        A: 0, B: 1, C: 2, D: 3, E: 4, F: 5, G: 6, H: 7, I: 8, J: 9, K: 10, L: 11, M: 12, N: 13,
-        O: 14, P: 15, Q: 16, R: 17, S: 18, T: 19, U: 20, V: 21, W: 22, X: 23, Y: 24, Z: 25
+        "0" => [0, 1],
+        "1" => [1, 0],
+        "2" => [2, 5],
+        "3" => [3, 7],
+        "4" => [4, 9],
+        "5" => [5, 13],
+        "6" => [6, 15],
+        "7" => [7, 17],
+        "8" => [8, 19],
+        "9" => [9, 21],
+        "A" => [0, 1],
+        "B" => [1, 0],
+        "C" => [2, 5],
+        "D" => [3, 7],
+        "E" => [4, 9],
+        "F" => [5, 13],
+        "G" => [6, 15],
+        "H" => [7, 17],
+        "I" => [8, 19],
+        "J" => [9, 21],
+        "K" => [10, 2],
+        "L" => [11, 4],
+        "M" => [12, 18],
+        "N" => [13, 20],
+        "O" => [14, 11],
+        "P" => [15, 3],
+        "Q" => [16, 6],
+        "R" => [17, 8],
+        "S" => [18, 12],
+        "T" => [19, 14],
+        "U" => [20, 16],
+        "V" => [21, 10],
+        "W" => [22, 22],
+        "X" => [23, 25],
+        "Y" => [24, 24],
+        "Z" => [25, 23]
       }
     end
 
     def cin_remainders
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      ("A".."Z").to_a
     end
 
     def omocodia
@@ -89,13 +114,13 @@ module ItaxCode
     end
 
     def encode_cin(code)
-      tot = 0
+      cin_tot = 0
 
-      code.chars.each_with_index do |char, index|
-        tot += (index + 1).odd? ? cin_odds[char.to_sym] : cin_evens[char.to_sym]
+      code[0..14].each_char.with_index do |char, i|
+        cin_tot += cin[char][((i + 1) % 2).to_i]
       end
 
-      cin_remainders[tot % 26]
+      cin_remainders[cin_tot % 26]
     end
 
     def cities
