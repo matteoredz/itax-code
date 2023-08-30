@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/matteoredz/itax-code/compare/v0.4.1...v1.0.0) (2023-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* allow empty or partial data argument in ItaxCode.valid? ([#26](https://github.com/matteoredz/itax-code/issues/26))
+* raise InvalidControlInternalNumberError on cin mismatch ([#25](https://github.com/matteoredz/itax-code/issues/25))
+
+### Features
+
+* allow empty or partial data argument in ItaxCode.valid? ([#26](https://github.com/matteoredz/itax-code/issues/26)) ([d02da6d](https://github.com/matteoredz/itax-code/commit/d02da6d17a4c04e1a5e07d7dd9d9d966479346bd))
+
+
+### Bug Fixes
+
+* compute omocodes from the original one ([#22](https://github.com/matteoredz/itax-code/issues/22)) ([b8a963f](https://github.com/matteoredz/itax-code/commit/b8a963faba2c46e1d23c0dc643a257aabd648dd9))
+* raise InvalidControlInternalNumberError on cin mismatch ([#25](https://github.com/matteoredz/itax-code/issues/25)) ([121cbca](https://github.com/matteoredz/itax-code/commit/121cbcaf75788c99bee4ffd7a997d07783a7fc15))
+
 ## [0.4.1](https://github.com/matteoredz/itax-code/compare/v0.4.0...v0.4.1) (2023-08-08)
 
 
