@@ -13,9 +13,10 @@ module ItaxCode
   #
   # @return [Hash]
   class Parser
-    NoTaxCodeError                    = Class.new(StandardError)
-    InvalidControlInternalNumberError = Class.new(StandardError)
-    InvalidTaxCodeError               = Class.new(StandardError)
+    Error                             = Class.new(StandardError)
+    NoTaxCodeError                    = Class.new(Error)
+    InvalidControlInternalNumberError = Class.new(Error)
+    InvalidTaxCodeError               = Class.new(Error)
 
     def initialize(tax_code, utils = Utils.new)
       @tax_code = tax_code.upcase
