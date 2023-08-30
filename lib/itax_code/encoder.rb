@@ -20,7 +20,7 @@ module ItaxCode
   #
   # @return [String] The encoded tax code
   class Encoder
-    class MissingDataError < StandardError; end
+    MissingDataError = Class.new(StandardError)
 
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]

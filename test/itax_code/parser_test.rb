@@ -5,25 +5,50 @@ require "test_helper"
 module ItaxCode
   class ParserTest < ActiveSupport::TestCase
     test "public interface" do
-      instance_methods = Parser.instance_methods - Object.instance_methods
+      instance_methods = klass.instance_methods - Object.instance_methods
 
       assert_equal %i[decode], instance_methods
     end
 
     test "#decode" do
-      assert_equal decoded, Parser.new("CCCFBA85D03L219P").decode
+      assert_equal decoded, klass.new("CCCFBA85D03L219P").decode
     end
 
     test "#decode when F gender" do
-      assert_equal decoded_f, Parser.new("RSSMRA80A41F205B").decode
+      assert_equal decoded_f, klass.new("RSSMRA80A41F205B").decode
     end
 
     test "#decode returns invalid code on invalid birthplace" do
-      assert_equal decoded_foreign,
-                   Parser.new("BRRDRN70M41Z602D").decode
+      assert_equal decoded_foreign, klass.new("BRRDRN70M41Z602D").decode
+    end
+
+    test "raises NoTaxCodeError when no tax code is given" do
+      assert_raises klass::NoTaxCodeError do
+        klass.new("")
+      end
+    end
+
+    test "raises InvalidTaxCodeError when the tax code is invalid" do
+      wrong_length_tax_code = "CCCFBA85D03L219PXXX"
+
+      assert_raises klass::InvalidTaxCodeError do
+        klass.new(wrong_length_tax_code)
+      end
+    end
+
+    test "raises InvalidControlInternalNumberError when the cin differs from the computed one" do
+      tax_code_with_wrong_cin = "CCCFBA85D03L219Z"
+
+      assert_raises klass::InvalidControlInternalNumberError do
+        klass.new(tax_code_with_wrong_cin)
+      end
     end
 
     private
+
+      def klass
+        Parser
+      end
 
       def decoded
         {
