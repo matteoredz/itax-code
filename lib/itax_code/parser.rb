@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "itax_code/omocode"
 
 module ItaxCode
@@ -11,14 +13,17 @@ module ItaxCode
   #
   # @return [Hash]
   class Parser
-    class NoTaxCodeError      < StandardError; end
-    class InvalidTaxCodeError < StandardError; end
+    NoTaxCodeError                    = Class.new(StandardError)
+    InvalidControlInternalNumberError = Class.new(StandardError)
+    InvalidTaxCodeError               = Class.new(StandardError)
 
     def initialize(tax_code, utils = Utils.new)
-      @tax_code = tax_code&.upcase
-      @utils    = utils
+      @tax_code = tax_code.upcase
       raise NoTaxCodeError if @tax_code.blank?
       raise InvalidTaxCodeError unless Validator.standard_length?(@tax_code)
+
+      @utils = utils
+      raise InvalidControlInternalNumberError if raw[:cin] != @utils.encode_cin(tax_code)
     end
 
     # Decodes the tax code into its components.
@@ -30,7 +35,7 @@ module ItaxCode
         gender: gender,
         birthdate: birthdate,
         birthplace: birthplace,
-        omocodes: Omocode.new(tax_code).list,
+        omocodes: Omocode.new(tax_code).omocodes,
         raw: raw
       }
     end

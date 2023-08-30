@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ItaxCode
   # Handles the validation logic.
   #
@@ -11,7 +13,7 @@ module ItaxCode
 
     class << self
       # Checks the tax code standard length against user
-      # and business fical code standards.
+      # and business fiscal code standards.
       #
       # @param [String] code The tax code
       #
@@ -23,7 +25,7 @@ module ItaxCode
 
     # Checks pre computed tax code validity against newly encoded tax code.
     #
-    # @param [String] tax_code The pre computed tax code
+    # @param [String] tax_code The pre-computed tax code
     #
     # @return [true, false]
     def valid?(tax_code)

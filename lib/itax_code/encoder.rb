@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ItaxCode
   # Handles the tax code generation logic.
   #
@@ -18,7 +20,7 @@ module ItaxCode
   #
   # @return [String] The encoded tax code
   class Encoder
-    class MissingDataError < StandardError; end
+    MissingDataError = Class.new(StandardError)
 
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]
@@ -60,9 +62,7 @@ module ItaxCode
         consonants = utils.extract_consonants chars
         vowels     = utils.extract_vowels chars
 
-        if consonants.length > 3
-          consonants = consonants.chars.values_at(0, 2..consonants.chars.size).join
-        end
+        consonants = consonants.chars.values_at(0, 2..consonants.size).join if consonants.length > 3
 
         "#{consonants[0..2]}#{vowels[0..2]}XXX"[0..2].upcase
       end

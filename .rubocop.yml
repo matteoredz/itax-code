@@ -5,9 +5,13 @@ require:
   - rubocop-rake
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5
 
 Bundler/OrderedGems:
+  Enabled: false
+
+Gemspec/RequireMFA:
   Enabled: false
 
 Layout/EmptyLineBetweenDefs:
@@ -33,6 +37,7 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Enabled: true
   Exclude:
+    - 'lib/itax_code/utils.rb'
     - 'test/**/*'
 
 Metrics/MethodLength:
@@ -40,9 +45,6 @@ Metrics/MethodLength:
   CountAsOne: ['array', 'hash']
 
 Style/Documentation:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/StringLiterals:

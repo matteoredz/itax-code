@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/all"
 
 require "itax_code/version"
@@ -7,6 +9,8 @@ require "itax_code/parser"
 require "itax_code/validator"
 
 module ItaxCode
+  Error = Class.new(StandardError)
+
   class << self
     # Encodes user tax code.
     #
@@ -61,6 +65,4 @@ module ItaxCode
       Validator.new(data).valid?(tax_code)
     end
   end
-
-  class Error < StandardError; end
 end

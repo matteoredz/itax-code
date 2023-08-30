@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.1](https://github.com/matteoredz/itax-code/compare/v0.4.0...v0.4.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* disable MFA as it breaks the CI ([#20](https://github.com/matteoredz/itax-code/issues/20)) ([7c9568e](https://github.com/matteoredz/itax-code/commit/7c9568e66618e324d4da137ddc6d0680b6900daa))
+
+## [0.4.0](https://github.com/matteoredz/itax-code/compare/v0.3.0...v0.4.0) (2023-08-08)
+
+
+### Features
+
+* improve omocodes algo ([0834c43](https://github.com/matteoredz/itax-code/commit/0834c4372d300e29057bc283556b6af532cca722))
+
+
+### Bug Fixes
+
+* explicit the workflow permissions ([#17](https://github.com/matteoredz/itax-code/issues/17)) ([41d3515](https://github.com/matteoredz/itax-code/commit/41d35154db7f18622369a0b35ce0eb6b13fe4812))
+
 ## [0.3.0](https://github.com/matteoredz/itax-code/compare/v0.2.0...v0.3.0) (2023-06-30)
 
 
