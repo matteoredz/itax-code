@@ -40,7 +40,7 @@ module ItaxCode
     # encoded from user informations.
     #
     # @param [String] tax_code The user tax code
-    # @param [Hash]   data     The user attributes
+    # @param [Hash]   data     The optional user attributes
     #
     # @option data [String]       :surname
     # @option data [String]       :name
@@ -49,8 +49,8 @@ module ItaxCode
     # @option data [String]       :birthplace
     #
     # @return [Boolean]
-    def valid?(tax_code, data)
-      Validator.new(data).valid?(tax_code)
+    def valid?(tax_code, data = {})
+      Validator.new(tax_code, data).valid?
     end
   end
 end
