@@ -5,8 +5,7 @@
 
 ### Bug Fixes
 
-* NoMethodError ([#27](https://github.com/matteoredz/itax-code/issues/27)) ([15470d1](https://github.com/matteoredz/itax-code/commit/15470d104a8c0c958e24de199243692e88a94b92))
-* undefined method 'upcase' for nil:NilClass ([15470d1](https://github.com/matteoredz/itax-code/commit/15470d104a8c0c958e24de199243692e88a94b92))
+* NoMethodError undefined method 'upcase' for nil:NilClass ([#27](https://github.com/matteoredz/itax-code/issues/27)) ([15470d1](https://github.com/matteoredz/itax-code/commit/15470d104a8c0c958e24de199243692e88a94b92))
 
 ## [1.0.0](https://github.com/matteoredz/itax-code/compare/v0.4.1...v1.0.0) (2023-08-30)
 
