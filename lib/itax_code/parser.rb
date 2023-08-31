@@ -19,7 +19,7 @@ module ItaxCode
     InvalidTaxCodeError               = Class.new(Error)
 
     def initialize(tax_code, utils = Utils.new)
-      @tax_code = tax_code.upcase
+      @tax_code = tax_code&.upcase
       raise NoTaxCodeError if @tax_code.blank?
       raise InvalidTaxCodeError unless Validator.standard_length?(@tax_code)
 
