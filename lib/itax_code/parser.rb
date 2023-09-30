@@ -16,15 +16,17 @@ module ItaxCode
     InvalidControlInternalNumberError = Class.new(Error)
     InvalidTaxCodeError               = Class.new(Error)
 
+    LENGTH = 16
+
     # @param [String] tax_code
     # @param [Utils]  utils
     def initialize(tax_code, utils = Utils.new)
       @tax_code = tax_code&.upcase
-      raise NoTaxCodeError if @tax_code.blank?
-      raise InvalidTaxCodeError unless Validator.standard_length?(@tax_code)
+      @utils    = utils
 
-      @utils = utils
-      raise InvalidControlInternalNumberError if raw[:cin] != @utils.encode_cin(tax_code)
+      raise NoTaxCodeError if @tax_code.blank?
+      raise InvalidTaxCodeError if @tax_code.length != LENGTH
+      raise InvalidControlInternalNumberError if raw[:cin] != @utils.encode_cin(@tax_code)
     end
 
     # Decodes the tax code into its components.
