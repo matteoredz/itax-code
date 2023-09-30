@@ -33,6 +33,10 @@ ItaxCode.encode(
   birthdate: "1980-01-01", # String|Time|Date|DateTime
   birthplace: "Milano" # Name(Milano)|code(F205)
 )
+
+# Output
+#
+# "RSSMRA80A01F205X"
 ```
 
 ### Decode
@@ -197,16 +201,11 @@ ItaxCode.decode("RSSMRA80A01F205X")
 ### Validate
 
 ```ruby
-ItaxCode.valid?(
-  "RSSMRA80A01F205X",
-  {
-    surname: "Rossi",
-    name: "Mario",
-    gender: "M",
-    birthdate: "1980-01-01",
-    birthplace: "Milano"
-  }
-)
+ItaxCode.valid?("RSSMRA80A01F205X")
+
+# Output
+#
+# true
 ```
 
 ## Development

@@ -3,12 +3,6 @@
 module ItaxCode
   # Handles the tax code generation logic.
   #
-  # @param [String]       surname    The user first name
-  # @param [String]       name       The user last name
-  # @param [String]       gender     The user gender
-  # @param [String, Date] birthdate  The user birthdate
-  # @param [String]       birthplace The user birthplace
-  #
   # @example
   #   ItaxCode::Encoder.new(
   #     surname: "Rossi",
@@ -22,16 +16,24 @@ module ItaxCode
   class Encoder
     MissingDataError = Class.new(StandardError)
 
+    # @param [Hash]  data  The user attributes
+    # @param [Utils] utils
+    #
+    # @option data [String]       :surname    The user first name
+    # @option data [String]       :name       The user last name
+    # @option data [String]       :gender     The user gender
+    # @option data [String, Date] :birthdate  The user birthdate
+    # @option data [String]       :birthplace The user birthplace
     def initialize(data = {}, utils = Utils.new)
       @surname    = data[:surname]
       @name       = data[:name]
       @gender     = data[:gender]&.upcase
       @birthdate  = data[:birthdate].to_s
       @birthplace = data[:birthplace]
-      @utils      = utils
       validate_data_presence!
 
       @birthdate = parse_birthdate!
+      @utils     = utils
     end
 
     # Computes the tax code from its components.
