@@ -6,7 +6,6 @@ require "itax_code/version"
 require "itax_code/utils"
 require "itax_code/encoder"
 require "itax_code/parser"
-require "itax_code/validator"
 
 module ItaxCode
   Error = Class.new(StandardError)
@@ -42,7 +41,10 @@ module ItaxCode
     #
     # @return [Boolean]
     def valid?(tax_code)
-      Validator.new(tax_code).valid?
+      decode(tax_code)
+      true
+    rescue Parser::Error
+      false
     end
   end
 end

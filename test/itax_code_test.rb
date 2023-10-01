@@ -19,8 +19,12 @@ class ItaxCodeTest < ActiveSupport::TestCase
     assert_instance_of Hash, klass.decode("RSSMRA80A41F205B")
   end
 
-  test "#valid?" do
+  test "#valid? is truthy when the tax code can be decoded" do
     assert klass.valid?("RSSMRA80A10F205Z")
+  end
+
+  test "#valid? is falsy when the parser cannot decode the given tax code" do
+    assert_not klass.valid?("WRONG")
   end
 
   private
