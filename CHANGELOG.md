@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/matteoredz/itax-code/compare/v1.0.1...v2.0.0) (2023-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove Validator and merge its logic into Parser ([#32](https://github.com/matteoredz/itax-code/issues/32))
+* remove data hash argument from ItaxCode.valid? and ItaxCode::Validator#valid? ([#30](https://github.com/matteoredz/itax-code/issues/30))
+
+### Bug Fixes
+
+* remove data hash argument from ItaxCode.valid? and ItaxCode::Validator#valid? ([#30](https://github.com/matteoredz/itax-code/issues/30)) ([997f8b0](https://github.com/matteoredz/itax-code/commit/997f8b0b9f4bc00012475950a84465bf06b73a52))
+
+
+### Code Refactoring
+
+* remove Validator and merge its logic into Parser ([#32](https://github.com/matteoredz/itax-code/issues/32)) ([348bdd0](https://github.com/matteoredz/itax-code/commit/348bdd003d1709b0dd2d41e58b0307a1b8e23ab1))
+
 ## [1.0.1](https://github.com/matteoredz/itax-code/compare/v1.0.0...v1.0.1) (2023-08-31)
 
 
