@@ -12,7 +12,7 @@ module ItaxCode
   Error = Class.new(StandardError)
 
   class << self
-    # Encodes user tax code.
+    # Encodes the user tax code.
     #
     # @param [Hash] data The user attributes
     #
@@ -27,7 +27,7 @@ module ItaxCode
       Encoder.new(data).encode
     end
 
-    # Decodes tax code in its components.
+    # Decodes the tax code in its components.
     #
     # @param [String] tax_code The user tax code
     #
@@ -36,21 +36,13 @@ module ItaxCode
       Parser.new(tax_code).decode
     end
 
-    # Checks the given tax code validity against new one
-    # encoded from user informations.
+    # Checks the given tax code validity.
     #
     # @param [String] tax_code The user tax code
-    # @param [Hash]   data     The optional user attributes
-    #
-    # @option data [String]       :surname
-    # @option data [String]       :name
-    # @option data [String]       :gender
-    # @option data [String, Date] :birthdate
-    # @option data [String]       :birthplace
     #
     # @return [Boolean]
-    def valid?(tax_code, data = {})
-      Validator.new(tax_code, data).valid?
+    def valid?(tax_code)
+      Validator.new(tax_code).valid?
     end
   end
 end

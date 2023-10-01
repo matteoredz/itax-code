@@ -20,16 +20,7 @@ class ItaxCodeTest < ActiveSupport::TestCase
   end
 
   test "#valid?" do
-    assert klass.valid?(
-      "RSSMRA80A10F205Z",
-      {
-        surname: "Rossi",
-        name: "Mario",
-        gender: "M",
-        birthdate: Date.new(1980, 1, 10),
-        birthplace: "Milano"
-      }
-    )
+    assert klass.valid?("RSSMRA80A10F205Z")
   end
 
   private

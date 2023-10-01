@@ -5,19 +5,19 @@ require "itax_code/omocode"
 module ItaxCode
   # Handles the parsing logic.
   #
-  # @param [String] tax_code
-  #
   # @example
   #
   #   ItaxCode::Parser.new("RSSMRA70A01L726S").decode
   #
-  # @return [Hash]
+  # @return [Hash] The parsed tax code
   class Parser
     Error                             = Class.new(StandardError)
     NoTaxCodeError                    = Class.new(Error)
     InvalidControlInternalNumberError = Class.new(Error)
     InvalidTaxCodeError               = Class.new(Error)
 
+    # @param [String] tax_code
+    # @param [Utils]  utils
     def initialize(tax_code, utils = Utils.new)
       @tax_code = tax_code&.upcase
       raise NoTaxCodeError if @tax_code.blank?
