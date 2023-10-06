@@ -16,7 +16,7 @@ namespace :cities do
     output_string = CSV.generate do |csv|
       csv << %w[code province name created_on deleted_on]
 
-      CSV.foreach(tempfile.path, headers: true) do |row|
+      CSV.foreach(tempfile.path, encoding: "bom|utf-8", headers: true) do |row|
         csv << [
           row["CODCATASTALE"],
           row["SIGLAPROVINCIA"],
