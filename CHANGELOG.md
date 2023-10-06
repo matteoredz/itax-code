@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/matteoredz/itax-code/compare/v2.0.0...v2.0.1) (2023-10-06)
+
+
+### Bug Fixes
+
+* fix encoding error in cities.rake and update cities.csv ([#34](https://github.com/matteoredz/itax-code/issues/34)) ([80ff044](https://github.com/matteoredz/itax-code/commit/80ff044cfd4961348304f3d99b3f7bbe96773a4f))
+
 ## [2.0.0](https://github.com/matteoredz/itax-code/compare/v1.0.1...v2.0.0) (2023-10-01)
 
 
