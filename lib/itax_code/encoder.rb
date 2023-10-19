@@ -14,9 +14,6 @@ module ItaxCode
   #
   # @return [String] The encoded tax code
   class Encoder
-    Error            = Class.new(StandardError)
-    MissingDataError = Class.new(Error)
-
     # @param [Hash]  data  The user attributes
     # @param [Utils] utils
     #
