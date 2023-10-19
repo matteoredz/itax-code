@@ -97,7 +97,7 @@ module ItaxCode
       def parse_birthdate!
         Date.parse(birthdate)
       rescue StandardError
-        raise ArgumentError, "#{birthdate} is not a valid date"
+        raise InvalidBirthdateError, "#{birthdate} is not a valid date"
       end
   end
 end

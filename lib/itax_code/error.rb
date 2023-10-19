@@ -6,6 +6,7 @@ module ItaxCode
   class Encoder
     Error = Class.new(Error)
 
+    InvalidBirthdateError = Class.new(Error)
     MissingDataError = Class.new(Error)
   end
 
