@@ -4,13 +4,13 @@ module ItaxCode
   Error = Class.new(StandardError)
 
   class Encoder
-    Error = Class.new(StandardError)
+    Error = Class.new(Error)
 
     MissingDataError = Class.new(Error)
   end
 
   class Parser
-    Error = Class.new(StandardError)
+    Error = Class.new(Error)
 
     InvalidControlInternalNumberError = Class.new(Error)
     InvalidTaxCodeError = Class.new(Error)
