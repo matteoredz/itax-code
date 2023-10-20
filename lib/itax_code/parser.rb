@@ -19,7 +19,7 @@ module ItaxCode
       @tax_code = tax_code&.upcase
       @utils    = utils
 
-      raise NoTaxCodeError if @tax_code.blank?
+      raise NoTaxCodeError if @utils.blank?(@tax_code)
       raise InvalidTaxCodeError if @tax_code.length != LENGTH
       raise InvalidControlInternalNumberError if raw[:cin] != @utils.encode_cin(@tax_code)
     end
@@ -92,7 +92,7 @@ module ItaxCode
         if place.nil?
           birthplace(utils.countries, stop: true) unless stop
         else
-          place.to_h.deep_symbolize_keys
+          place.to_h.transform_keys(&:to_sym)
         end
       end
 

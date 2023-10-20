@@ -7,10 +7,16 @@ SimpleCov.start do
   minimum_coverage line: 100, branch: 100
 end
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "itax_code"
-
 require "byebug"
 require "minitest/autorun"
 require "mocha/minitest"
 require "timecop"
+
+require_relative "support/test_macro"
+
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "itax_code"
+
+Minitest::Test.class_eval do
+  extend TestMacro
+end

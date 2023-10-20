@@ -4,15 +4,35 @@ require "csv"
 
 module ItaxCode
   class Utils
+    # Range of Unicode code points, corresponding to accented characters.
+    DIACRITICS = [*0x1DC0..0x1DFF, *0x0300..0x036F, *0xFE20..0xFE2F].pack("U*")
+
+    def blank?(obj)
+      obj.respond_to?(:empty?) ? !!obj.empty? : !obj
+    end
+
+    def present?(obj)
+      !blank?(obj)
+    end
+
+    def slugged(string, separator = "-")
+      transliterate(string.downcase.strip)
+        .gsub(/\s*@\s*/, " at ")
+        .gsub(/\s*&\s*/, " and ")
+        .gsub(/[^\w-]+/, separator)
+        .gsub(/-{2,}/, separator)
+        .gsub(/^-+|-+$/, "")
+    end
+
+    def transliterate(str)
+      str.unicode_normalize(:nfd).tr(DIACRITICS, "").unicode_normalize(:nfc)
+    end
+
     def regex
       /^([A-Z]{3})([A-Z]{3})
         (([A-Z\d]{2})([ABCDEHLMPRST]{1})([A-Z\d]{2}))
         ([A-Z]{1}[A-Z\d]{3})
         ([A-Z]{1})$/x
-    end
-
-    def slugged(str, separator = "-")
-      str.gsub(/\s*@\s*/, " at ").gsub(/\s*&\s*/, " and ").parameterize(separator: separator)
     end
 
     def months

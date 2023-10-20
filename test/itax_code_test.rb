@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class ItaxCodeTest < ActiveSupport::TestCase
+class ItaxCodeTest < Minitest::Test
   test "#encode" do
     result = klass.encode(
       surname: "Rossi",
@@ -24,7 +24,7 @@ class ItaxCodeTest < ActiveSupport::TestCase
   end
 
   test "#valid? is falsy when the parser cannot decode the given tax code" do
-    assert_not klass.valid?("WRONG")
+    refute klass.valid?("WRONG")
   end
 
   private

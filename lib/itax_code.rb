@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "active_support/all"
-
 require "itax_code/version"
 require "itax_code/utils"
 require "itax_code/encoder"
