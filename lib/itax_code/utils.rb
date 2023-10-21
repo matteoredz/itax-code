@@ -28,7 +28,7 @@ module ItaxCode
       str.unicode_normalize(:nfd).tr(DIACRITICS, "").unicode_normalize(:nfc)
     end
 
-    def regex
+    def tax_code_sections_regex
       /^([A-Z]{3})([A-Z]{3})
         (([A-Z\d]{2})([ABCDEHLMPRST]{1})([A-Z\d]{2}))
         ([A-Z]{1}[A-Z\d]{3})

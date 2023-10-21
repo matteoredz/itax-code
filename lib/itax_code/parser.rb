@@ -56,7 +56,7 @@ module ItaxCode
       end
 
       def raw_matches
-        @raw_matches ||= tax_code.scan(utils.regex).flatten
+        @raw_matches ||= tax_code.scan(utils.tax_code_sections_regex).flatten
       end
 
       def gender
