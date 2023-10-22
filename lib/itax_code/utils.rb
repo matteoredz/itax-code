@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 require "csv"
+require "i18n"
 
 module ItaxCode
   class Utils
-    # Range of Unicode code points, corresponding to accented characters.
-    DIACRITICS = [*0x1DC0..0x1DFF, *0x0300..0x036F, *0xFE20..0xFE2F].pack("U*")
-
     def blank?(obj)
       obj.respond_to?(:empty?) ? !!obj.empty? : !obj
     end
@@ -17,15 +15,15 @@ module ItaxCode
 
     def slugged(string, separator = "-")
       transliterate(string.downcase.strip)
-        .gsub(/\s*@\s*/, " at ")
-        .gsub(/\s*&\s*/, " and ")
-        .gsub(/[^\w-]+/, separator)
-        .gsub(/-{2,}/, separator)
-        .gsub(/^-+|-+$/, "")
+        .gsub(/[^\w-]+/, separator) # white spaces to '-' char
+        .gsub(/-{2,}/, separator) # consecutive '-' chars to single '-' char
+        .gsub(/^-+|-+$/, "") # remove leading and trailing '-' chars
     end
 
-    def transliterate(str)
-      str.unicode_normalize(:nfd).tr(DIACRITICS, "").unicode_normalize(:nfc)
+    def transliterate(string)
+      return string if string.ascii_only?
+
+      I18n.transliterate(string.unicode_normalize(:nfc))
     end
 
     def tax_code_sections_regex
