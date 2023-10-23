@@ -1,5 +1,7 @@
 # ItaxCode
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/6ce5347018f4b448098f/maintainability)](https://codeclimate.com/github/matteoredz/itax-code/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6ce5347018f4b448098f/test_coverage)](https://codeclimate.com/github/matteoredz/itax-code/test_coverage)
+
 `ItaxCode` is a Ruby Gem to encode and decode Italian tax code (Codice Fiscale).
 
 It handles common operations on Italian tax code like, for instance, encoding, decoding and validation.
