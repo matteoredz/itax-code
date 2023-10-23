@@ -20,6 +20,3 @@ require "itax_code"
 Minitest::Test.class_eval do
   extend TestMacro
 end
-
-# Disable available locale checks to avoid warnings running the test suite.
-I18n.enforce_available_locales = false

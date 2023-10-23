@@ -37,6 +37,7 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Enabled: true
   Exclude:
+    - 'lib/itax_code/transliterator.rb'
     - 'lib/itax_code/utils.rb'
     - 'test/**/*'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "csv"
-require "i18n"
+require "itax_code/transliterator"
 
 module ItaxCode
   class Utils
@@ -23,7 +23,8 @@ module ItaxCode
     def transliterate(string)
       return string if string.ascii_only?
 
-      I18n.transliterate(string.unicode_normalize(:nfc))
+      transliterator = Transliterator.new
+      transliterator.transliterate(string.unicode_normalize(:nfc))
     end
 
     def tax_code_sections_regex
