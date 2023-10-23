@@ -18,22 +18,34 @@ module ItaxCode
       assert_equal decoded_f, klass.new("RSSMRA80A41F205B").decode
     end
 
-    test "#decode returns invalid code on invalid birthplace" do
+    test "#decode when foreign" do
       assert_equal decoded_foreign, klass.new("BRRDRN70M41Z602D").decode
     end
 
-    test "raises NoTaxCodeError when no tax code is given" do
-      assert_raises klass::NoTaxCodeError do
-        klass.new("")
+    # NOTE: This tests the branch where the computed date is before the current year.
+    test "decodes the birthdate without manipulating the original value" do
+      Timecop.freeze(Date.parse("1990-01-01")) do
+        assert_equal "1985-04-03", klass.new("CCCFBA85D03L219P").decode[:birthdate]
       end
     end
 
-    test "raises InvalidTaxCodeError when the tax code is invalid" do
+    # FIXME: This behaviour needs to be fixed, maybe by raising an InvalidTaxCodeError.
+    test "returns nil birthplace when the lookup on both cities and countries fails" do
+      assert_nil klass.new("BRRDRN70M41ZXXXE").decode[:birthplace]
+    end
+
+    test "raises NoTaxCodeError with an empty tax code" do
+      assert_raises(klass::NoTaxCodeError) { klass.new("") }
+    end
+
+    test "raises NoTaxCodeError with a nil tax code" do
+      assert_raises(klass::NoTaxCodeError) { klass.new(nil) }
+    end
+
+    test "raises InvalidTaxCodeError when the tax code has wrong length" do
       wrong_length_tax_code = "CCCFBA85D03L219PXXX"
 
-      assert_raises klass::InvalidTaxCodeError do
-        klass.new(wrong_length_tax_code)
-      end
+      assert_raises(klass::InvalidTaxCodeError) { klass.new(wrong_length_tax_code) }
     end
 
     test "raises InvalidControlInternalNumberError when the cin differs from the computed one" do
