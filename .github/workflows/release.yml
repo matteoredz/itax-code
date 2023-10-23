@@ -20,7 +20,7 @@ jobs:
           release-type: ruby
           token: ${{secrets.GITHUB_TOKEN}}
           version-file: "lib/itax_code/version.rb"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{steps.release.outputs.release_created}}
       - uses: ruby/setup-ruby@v1
         with:

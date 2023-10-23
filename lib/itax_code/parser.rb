@@ -68,8 +68,9 @@ module ItaxCode
       # value could be wrong. E.g. a person born on 1920 would have birthdate_year = 20 meaning
       # that both 1920 and 2020 could be valid born years.
       def year
-        val = (Date.today.year.to_s[0..1] + utils.omocodia_decode(raw[:birthdate_year])).to_i
-        val > Date.today.year ? val - 100 : val
+        current_year = Date.today.year
+        val = (current_year.to_s[0..1] + utils.omocodia_decode(raw[:birthdate_year])).to_i
+        val > current_year ? val - 100 : val
       end
 
       def month
