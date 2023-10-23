@@ -6,10 +6,9 @@ require "itax_code/version"
 require "itax_code/utils"
 require "itax_code/encoder"
 require "itax_code/parser"
+require "itax_code/error"
 
 module ItaxCode
-  Error = Class.new(StandardError)
-
   class << self
     # Encodes the user tax code.
     #

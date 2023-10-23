@@ -73,7 +73,7 @@ module ItaxCode
     end
 
     test "#encode raises ArgumentError on malformed birthdate" do
-      assert_raises ArgumentError do
+      assert_raises Encoder::InvalidBirthdateError do
         Encoder.new(
           surname: "Rossi",
           name: "Mario",

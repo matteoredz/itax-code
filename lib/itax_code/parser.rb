@@ -11,11 +11,6 @@ module ItaxCode
   #
   # @return [Hash] The parsed tax code
   class Parser
-    Error                             = Class.new(StandardError)
-    NoTaxCodeError                    = Class.new(Error)
-    InvalidControlInternalNumberError = Class.new(Error)
-    InvalidTaxCodeError               = Class.new(Error)
-
     LENGTH = 16
 
     # @param [String] tax_code
