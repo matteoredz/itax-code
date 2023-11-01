@@ -28,10 +28,11 @@ module ItaxCode
       refute klass.new.blank?(some_object)
     end
 
-    test "#slugged(string, separator)" do
+    test "#slugged(string)" do
       diacritic_names = {
         " Ārquim Urkęr--" => "arquim-urker",
-        "-Roimčus Lÿty -" => "roimcus-lyty"
+        "-Roimčus Lÿty -" => "roimcus-lyty",
+        "--M@rio Ro$$i -" => "m-rio-ro-i"
       }
 
       diacritic_names.each do |input, output|

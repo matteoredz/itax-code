@@ -13,11 +13,9 @@ module ItaxCode
       !blank?(obj)
     end
 
-    def slugged(string, separator = "-")
-      transliterate(string.downcase.strip)
-        .gsub(/[^\w-]+/, separator) # white spaces to '-' char
-        .gsub(/-{2,}/, separator) # consecutive '-' chars to single '-' char
-        .gsub(/^-+|-+$/, "") # remove leading and trailing '-' chars
+    def slugged(string)
+      transliterated = transliterate(string.downcase.strip)
+      transliterated.gsub(/[^\w-]+/, "-").gsub(/-{2,}/, "-").gsub(/^-+|-+$/, "")
     end
 
     def transliterate(string)
