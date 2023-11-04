@@ -1,5 +1,31 @@
 # Changelog
 
+## [2.0.2](https://github.com/matteoredz/itax-code/compare/v2.0.1...v2.0.2) (2023-11-04)
+
+
+### Continuous Integration
+
+* remove .travis.yml ([#49](https://github.com/matteoredz/itax-code/issues/49)) ([179141c](https://github.com/matteoredz/itax-code/commit/179141c9fc6aedefaad7f38cab70d6aa0d31e478))
+
+
+### Miscellaneous Chores
+
+* add quality badges + enable branch coverage ([#41](https://github.com/matteoredz/itax-code/issues/41)) ([cd3a950](https://github.com/matteoredz/itax-code/commit/cd3a950d85bf499526e7aa89dd468cb324e60e1b))
+
+
+### Bug Fixes
+
+* display all changelog-types ([#47](https://github.com/matteoredz/itax-code/issues/47)) ([d4eddf1](https://github.com/matteoredz/itax-code/commit/d4eddf109fc2bf112ded9f7ee7fca4d188269aaa))
+* pass CC_TEST_REPORTER_ID top-down to test workflow ([#45](https://github.com/matteoredz/itax-code/issues/45)) ([89398f2](https://github.com/matteoredz/itax-code/commit/89398f2fd681f62296268a1aeffd6f0782ccdf95))
+* require lint and test workflows run also on main ([#43](https://github.com/matteoredz/itax-code/issues/43)) ([f0a0d06](https://github.com/matteoredz/itax-code/commit/f0a0d06cc3682c39b2a5036d7bddc205eb0fc21c))
+* update README.md for SEO ([#48](https://github.com/matteoredz/itax-code/issues/48)) ([04db3eb](https://github.com/matteoredz/itax-code/commit/04db3eb4299e22b598fd13223fb4f8e36da52539))
+
+
+### Code Refactoring
+
+* make gem errors inherit from base classes ([#37](https://github.com/matteoredz/itax-code/issues/37)) ([99b00f1](https://github.com/matteoredz/itax-code/commit/99b00f152d9172bebd5f59d4d69e187cf7968a23))
+* remove ActiveSupport dependency ([#39](https://github.com/matteoredz/itax-code/issues/39)) ([9302954](https://github.com/matteoredz/itax-code/commit/93029541f510924a92acdf413f33a1b9ea939230))
+
 ## [2.0.1](https://github.com/matteoredz/itax-code/compare/v2.0.0...v2.0.1) (2023-10-06)
 
 
