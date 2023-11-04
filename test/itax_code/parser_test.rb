@@ -3,7 +3,7 @@
 require "test_helper"
 
 module ItaxCode
-  class ParserTest < ActiveSupport::TestCase
+  class ParserTest < Minitest::Test
     test "public interface" do
       instance_methods = klass.instance_methods - Object.instance_methods
 

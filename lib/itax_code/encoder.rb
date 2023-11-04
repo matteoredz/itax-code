@@ -23,6 +23,8 @@ module ItaxCode
     # @option data [String, Date] :birthdate  The user birthdate
     # @option data [String]       :birthplace The user birthplace
     def initialize(data = {}, utils = Utils.new)
+      @utils = utils
+
       @surname    = data[:surname]
       @name       = data[:name]
       @gender     = data[:gender]&.upcase
@@ -31,7 +33,6 @@ module ItaxCode
       validate_data_presence!
 
       @birthdate = parse_birthdate!
-      @utils     = utils
     end
 
     # Computes the tax code from its components.
@@ -79,8 +80,8 @@ module ItaxCode
         place_slug = utils.slugged(birthplace)
         place_item = src.find { |i| place_slug == utils.slugged(i[lookup_key]) }
 
-        code = place_item.try(:[], "code")
-        return code if code.present?
+        code = place_item&.[]("code")
+        return code if utils.present?(code)
         raise MissingDataError, "no code found for #{birthplace}" if stop
 
         encode_birthplace(utils.countries, stop: true)
@@ -88,7 +89,7 @@ module ItaxCode
 
       def validate_data_presence!
         instance_variables.each do |ivar|
-          next if instance_variable_get(ivar).present?
+          next if utils.present?(instance_variable_get(ivar))
 
           raise MissingDataError, "missing #{ivar} value"
         end

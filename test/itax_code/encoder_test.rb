@@ -3,7 +3,7 @@
 require "test_helper"
 
 module ItaxCode
-  class EncoderTest < ActiveSupport::TestCase
+  class EncoderTest < Minitest::Test
     test "public interface" do
       instance_methods = Encoder.instance_methods - Object.instance_methods
 

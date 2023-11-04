@@ -1,18 +1,35 @@
 # frozen_string_literal: true
 
 require "csv"
+require "itax_code/transliterator"
 
 module ItaxCode
   class Utils
-    def regex
+    def blank?(obj)
+      obj.respond_to?(:empty?) ? !!obj.empty? : !obj
+    end
+
+    def present?(obj)
+      !blank?(obj)
+    end
+
+    def slugged(string)
+      transliterated = transliterate(string.downcase.strip)
+      transliterated.gsub(/[^\w-]+/, "-").gsub(/-{2,}/, "-").gsub(/^-+|-+$/, "")
+    end
+
+    def transliterate(string)
+      return string if string.ascii_only?
+
+      transliterator = Transliterator.new
+      transliterator.transliterate(string.unicode_normalize(:nfc))
+    end
+
+    def tax_code_sections_regex
       /^([A-Z]{3})([A-Z]{3})
         (([A-Z\d]{2})([ABCDEHLMPRST]{1})([A-Z\d]{2}))
         ([A-Z]{1}[A-Z\d]{3})
         ([A-Z]{1})$/x
-    end
-
-    def slugged(str, separator = "-")
-      str.gsub(/\s*@\s*/, " at ").gsub(/\s*&\s*/, " and ").parameterize(separator: separator)
     end
 
     def months
