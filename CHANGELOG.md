@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.3](https://github.com/matteoredz/itax-code/compare/v2.0.2...v2.0.3) (2024-02-20)
+
+
+### Continuous Integration
+
+* add Ruby 3.3.0 to the test matrix ([#50](https://github.com/matteoredz/itax-code/issues/50)) ([2875b20](https://github.com/matteoredz/itax-code/commit/2875b2002d56327a0fbd652b275235093afebd62))
+
+
+### Bug Fixes
+
+* require the csv gem as runtime dependency ([#51](https://github.com/matteoredz/itax-code/issues/51)) ([5d3658e](https://github.com/matteoredz/itax-code/commit/5d3658ee8b4394a72555d3538b5ff30a18386491))
+
 ## [2.0.2](https://github.com/matteoredz/itax-code/compare/v2.0.1...v2.0.2) (2023-11-04)
 
 
