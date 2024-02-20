@@ -25,4 +25,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "false"
+
+  # CSV 3.1.7 is the first version requiring Ruby >= 2.5.0
+  spec.add_runtime_dependency "csv", "~> 3.0", ">= 3.1.7"
 end
