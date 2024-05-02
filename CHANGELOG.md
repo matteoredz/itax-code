@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.4](https://github.com/matteoredz/itax-code/compare/v2.0.3...v2.0.4) (2024-05-02)
+
+
+### Continuous Integration
+
+* update paambaati/codeclimate-action to v6.0.0 ([#55](https://github.com/matteoredz/itax-code/issues/55)) ([e7aad01](https://github.com/matteoredz/itax-code/commit/e7aad0168aa18df97235171082e9bd40287dee84))
+
+
+### Code Refactoring
+
+* converted Utils class in module ([#53](https://github.com/matteoredz/itax-code/issues/53)) ([99dddee](https://github.com/matteoredz/itax-code/commit/99dddee715b3bc5deccd27c6734832e7f9ec7cd0))
+
 ## [2.0.3](https://github.com/matteoredz/itax-code/compare/v2.0.2...v2.0.3) (2024-02-20)
 
 
