@@ -22,7 +22,7 @@ module ItaxCode
     # @option data [String]       :gender     The user gender
     # @option data [String, Date] :birthdate  The user birthdate
     # @option data [String]       :birthplace The user birthplace
-    def initialize(data = {}, utils = Utils.new)
+    def initialize(data = {}, utils = Utils)
       @utils = utils
 
       @surname    = data[:surname]

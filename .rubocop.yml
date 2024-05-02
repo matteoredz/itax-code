@@ -45,6 +45,11 @@ Metrics/MethodLength:
   Enabled: true
   CountAsOne: ['array', 'hash']
 
+Metrics/ModuleLength:
+  Enabled: true
+  Exclude:
+    - 'lib/itax_code/utils.rb'
+
 Style/Documentation:
   Enabled: false
 

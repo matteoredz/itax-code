@@ -8,7 +8,7 @@ module ItaxCode
     #
     # @param [String] tax_code
     # @param [Utils]  utils
-    def initialize(tax_code, utils = Utils.new)
+    def initialize(tax_code, utils = Utils)
       @tax_code = tax_code
       @utils    = utils
     end
