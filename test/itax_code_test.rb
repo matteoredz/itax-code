@@ -27,6 +27,10 @@ class ItaxCodeTest < Minitest::Test
     refute klass.valid?("WRONG")
   end
 
+  test "#random" do
+    assert_equal 16, klass.random.length
+  end
+
   private
 
     def klass

@@ -81,6 +81,16 @@ module ItaxCode
         CSV.foreach("#{__dir__}/data/countries.csv", headers: true)
       end
 
+      def random_person_data
+        {
+          surname: random_string,
+          name: random_string,
+          gender: %w[F M].sample,
+          birthdate: random_birthday,
+          birthplace: %w[H501 F205 D612 E256].sample # Milan, Rome, Naples, Turin
+        }
+      end
+
       private
 
         def omocodia_letters
@@ -149,6 +159,30 @@ module ItaxCode
             "0": "L", "1": "M", "2": "N", "3": "P", "4": "Q",
             "5": "R", "6": "S", "7": "T", "8": "U", "9": "V"
           }
+        end
+        def random_string
+          (0...6).map { (65 + rand(26)).chr }.join
+        end
+
+        def random_birthday
+          days_in_months = {1 => 31,
+                  2 => 28,
+                  3 => 31,
+                  4 => 30,
+                  5 => 31,
+                  6 => 30,
+                  7 => 31,
+                  8 =>31,
+                  9 =>30,
+                  10 =>31,
+                  11 =>30,
+                  12 =>31,
+          }
+          year = rand(1930..2006)
+          month = rand(1..12)
+          day = rand(1..days_in_months[month])
+
+          "#{year}-#{month}-#{day}"
         end
     end
   end
