@@ -16,5 +16,6 @@ module ItaxCode
     InvalidControlInternalNumberError = Class.new(Error)
     InvalidTaxCodeError = Class.new(Error)
     NoTaxCodeError = Class.new(Error)
+    DateTaxCodeError = Class.new(Error)
   end
 end

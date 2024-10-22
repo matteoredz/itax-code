@@ -48,6 +48,12 @@ module ItaxCode
       assert_raises(klass::InvalidTaxCodeError) { klass.new(wrong_length_tax_code) }
     end
 
+    test "raises DateTaxCodeError with an invalid date, e.g. 1978-4-31" do
+      wrong_month_tax_code = "SPENTB78D71D612X"
+
+      assert_raises(klass::DateTaxCodeError) { klass.new(wrong_month_tax_code).decode }
+    end
+
     test "raises InvalidControlInternalNumberError when the cin differs from the computed one" do
       tax_code_with_wrong_cin = "CCCFBA85D03L219Z"
 
