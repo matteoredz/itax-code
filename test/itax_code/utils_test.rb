@@ -40,10 +40,19 @@ module ItaxCode
       end
     end
 
+    test "random person data structure contains expected keys" do
+        expected_keys = [:surname, :name, :gender, :birthdate, :birthplace]
+
+        expected_keys.each do |key|
+          assert klass.random_person_data.key?(key), "Expected key #{key} to be present in the hash"
+        end
+    end
+
+
     private
 
-      def klass
-        Utils
-      end
+    def klass
+      Utils
+    end
   end
 end

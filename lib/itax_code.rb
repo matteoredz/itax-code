@@ -43,5 +43,12 @@ module ItaxCode
     rescue Parser::Error
       false
     end
+
+    # Encodes random tax code.
+    #
+    # @return [String]
+    def random
+      Encoder.new(Utils.random_person_data).encode
+    end
   end
 end
