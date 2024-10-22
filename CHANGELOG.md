@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/matteoredz/itax-code/compare/v2.0.4...v2.0.5) (2024-10-22)
+
+
+### Bug Fixes
+
+* parsing impossible dates ([#56](https://github.com/matteoredz/itax-code/issues/56)) ([4f5cc91](https://github.com/matteoredz/itax-code/commit/4f5cc91805db82f4195b75f677a95b37935d664d))
+
 ## [2.0.4](https://github.com/matteoredz/itax-code/compare/v2.0.3...v2.0.4) (2024-05-02)
 
 
