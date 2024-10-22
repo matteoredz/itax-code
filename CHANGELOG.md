@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.6](https://github.com/matteoredz/itax-code/compare/v2.0.5...v2.0.6) (2024-10-22)
+
+
+### Continuous Integration
+
+* add workflow to check conventional PR title ([#61](https://github.com/matteoredz/itax-code/issues/61)) ([bf709ae](https://github.com/matteoredz/itax-code/commit/bf709aed645955fc715c36afb94c5bf70c6404f2))
+
 ## [2.0.5](https://github.com/matteoredz/itax-code/compare/v2.0.4...v2.0.5) (2024-10-22)
 
 
