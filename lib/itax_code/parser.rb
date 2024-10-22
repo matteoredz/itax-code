@@ -83,11 +83,9 @@ module ItaxCode
       end
 
       def birthdate
-        begin
-          @birthdate ||= Date.parse("#{year}-#{month}-#{day}").to_s
-        rescue Date::Error
-          raise DateTaxCodeError
-        end
+        @birthdate ||= Date.parse("#{year}-#{month}-#{day}").to_s
+      rescue Date::Error
+        raise DateTaxCodeError
       end
 
       def birthplace(src = utils.cities, stop: false)
