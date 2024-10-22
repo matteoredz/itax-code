@@ -84,7 +84,7 @@ module ItaxCode
 
       def birthdate
         @birthdate ||= Date.parse("#{year}-#{month}-#{day}").to_s
-      rescue Date::Error
+      rescue ArgumentError
         raise DateTaxCodeError
       end
 
