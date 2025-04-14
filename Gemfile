@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "byebug"
+gem "csv"
 gem "minitest"
 gem "mocha"
 gem "rake"
