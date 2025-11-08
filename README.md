@@ -1,6 +1,6 @@
 # ItaxCode
 
-[![Gem Version](https://badge.fury.io/rb/itax_code.svg)](https://badge.fury.io/rb/itax_code) [![Maintainability](https://api.codeclimate.com/v1/badges/6ce5347018f4b448098f/maintainability)](https://codeclimate.com/github/matteoredz/itax-code/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6ce5347018f4b448098f/test_coverage)](https://codeclimate.com/github/matteoredz/itax-code/test_coverage)
+[![Gem Version](https://badge.fury.io/rb/itax_code.svg)](https://badge.fury.io/rb/itax_code) [![Maintainability](https://qlty.sh/gh/matteoredz/projects/itax-code/maintainability.svg)](https://qlty.sh/gh/matteoredz/projects/itax-code) [![Code Coverage](https://qlty.sh/gh/matteoredz/projects/itax-code/coverage.svg)](https://qlty.sh/gh/matteoredz/projects/itax-code)
 
 A Ruby Gem to encode, decode, and validate the Italian Tax Code (Fiscal Code, Codice Fiscale), dealing with [Omocodia](https://it.wikipedia.org/wiki/Omocodia) too.
 
