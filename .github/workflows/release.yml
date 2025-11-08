@@ -11,7 +11,7 @@ jobs:
   test:
     uses: ./.github/workflows/test.yml
     secrets:
-      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      QLTY_COVERAGE_TOKEN: ${{secrets.QLTY_COVERAGE_TOKEN}}
   release-please:
     needs:
       - lint
@@ -47,7 +47,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: 2.7.0
+          ruby-version: 3.4
         if: ${{steps.release.outputs.release_created}}
       - run: bundle install
         if: ${{steps.release.outputs.release_created}}
