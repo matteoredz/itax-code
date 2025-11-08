@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.licenses = ["MIT"]
   spec.authors = ["Matteo Rossi"]
   spec.email = ["mttrss5@gmail.com"]
-  spec.summary = "Encode and decode Italian tax code (Codice Fiscale)"
+  spec.summary = "Ruby gem for Italian tax codes"
   spec.homepage = "https://github.com/matteoredz/itax-code"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   spec.metadata["homepage_uri"] = spec.homepage
@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "false"
 
   # CSV 3.1.7 is the first version requiring Ruby >= 2.5.0
-  spec.add_runtime_dependency "csv", "~> 3.0", ">= 3.1.7"
+  spec.add_dependency "csv", "~> 3.0", ">= 3.1.7"
 end
