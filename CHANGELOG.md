@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.6](https://github.com/matteoredz/itax-code/compare/v2.0.5...v2.0.6) (2025-11-08)
+
+
+### Continuous Integration
+
+* add workflow to check conventional PR title ([#61](https://github.com/matteoredz/itax-code/issues/61)) ([bf709ae](https://github.com/matteoredz/itax-code/commit/bf709aed645955fc715c36afb94c5bf70c6404f2))
+
+
+### Documentation
+
+* improve SEO title and description ([#65](https://github.com/matteoredz/itax-code/issues/65)) ([e19de59](https://github.com/matteoredz/itax-code/commit/e19de59fd7c99100a9324ec55ef519398b97ad11))
+
+
+### Bug Fixes
+
+* setup qlty for code coverage reports ([#66](https://github.com/matteoredz/itax-code/issues/66)) ([0e27583](https://github.com/matteoredz/itax-code/commit/0e2758345def1b9c3c599666f786b2d98c5cfbe6))
+
 ## [2.0.5](https://github.com/matteoredz/itax-code/compare/v2.0.4...v2.0.5) (2024-10-22)
 
 
