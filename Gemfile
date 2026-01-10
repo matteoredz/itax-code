@@ -7,6 +7,7 @@ gemspec
 gem "byebug"
 gem "minitest"
 gem "mocha"
+gem "openssl"
 gem "rake"
 gem "rubocop"
 gem "rubocop-minitest"
