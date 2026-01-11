@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.7](https://github.com/matteoredz/itax-code/compare/v2.0.6...v2.0.7) (2026-01-11)
+
+
+### Bug Fixes
+
+* **deps:** add openssl gem to Gemfile ([#67](https://github.com/matteoredz/itax-code/issues/67)) ([3de10e3](https://github.com/matteoredz/itax-code/commit/3de10e335de75fea9b174191c2d56a3f2d32ccc8))
+
 ## [2.0.6](https://github.com/matteoredz/itax-code/compare/v2.0.5...v2.0.6) (2025-11-08)
 
 
