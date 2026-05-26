@@ -160,3 +160,12 @@ bundle exec rake cities   # update cities.csv data (rakelib/cities.rake)
 - **Test helper macros:** `test/support/test_macro.rb`
 - **CI matrix:** Ruby 2.5 through 3.4 + head (GitHub Actions)
 - **Coverage reporting:** Qlty.sh (configured in CI)
+
+---
+
+## Maintenance
+
+> **LLM instruction:** Whenever you modify code in this repository, check whether the change
+> affects any section of this file (API signatures, error hierarchy, edge cases, architecture,
+> data files, dev commands, testing conventions, etc.) and update the relevant section in the
+> same commit.
