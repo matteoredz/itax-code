@@ -55,8 +55,8 @@ Supporting classes:
 | `lib/itax_code/utils.rb` | CIN algorithm, CSV loaders, helpers |
 | `lib/itax_code/transliterator.rb` | Unicode→ASCII character map |
 | `lib/itax_code/error.rb` | Exception hierarchy |
-| `lib/itax_code/data/cities.csv` | ~8,000 Italian municipalities (code, province, name, created_on, deleted_on) |
-| `lib/itax_code/data/countries.csv` | 276 foreign countries (code, province, name) |
+| `lib/itax_code/data/cities.csv` | ~8,000 Italian municipalities (code, province, name, created_on, deleted_on) — loaded lazily via `CSV.foreach`, never eagerly or globally cached |
+| `lib/itax_code/data/countries.csv` | 276 foreign countries (code, province, name) — same loading constraints as cities.csv |
 
 ---
 
@@ -141,8 +141,8 @@ ItaxCode::Error (< StandardError)
 ## Development Commands
 
 ```bash
-bundle exec rake          # run full test suite (default Rake task)
-bundle exec rubocop       # lint all files
+bundle exec rake          # run full test suite (default Rake task) — run after any change
+bundle exec rubocop       # lint all files — run after any change
 bin/console               # interactive Ruby console with gem loaded
 bin/setup                 # install dependencies (bundle install)
 bin/release               # automated release script
@@ -151,10 +151,19 @@ bundle exec rake cities   # update cities.csv data (rakelib/cities.rake)
 
 ---
 
+## Code Style
+
+- Frozen string literal comment on every file (`# frozen_string_literal: true`)
+- Max line length: 100 chars (RuboCop enforced)
+- Double-quoted strings
+- Active RuboCop plugins: `rubocop-minitest`, `rubocop-performance`, `rubocop-rake`
+
+---
+
 ## Testing Conventions
 
 - **Framework:** Minitest (`test/**/*_test.rb`)
-- **Coverage:** 100% line + branch enforced via SimpleCov (configured in `test/test_helper.rb`)
+- **Coverage:** 100% line + branch enforced via SimpleCov (configured in `test/test_helper.rb`) — every new code path must have a test
 - **Mocking:** Mocha
 - **Time control:** `Timecop.freeze` for any date-sensitive test
 - **Test helper macros:** `test/support/test_macro.rb`
