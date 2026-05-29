@@ -43,6 +43,17 @@ module ItaxCode
                    ).encode
     end
 
+    test "#encode when name has 5 consonants skips the 2nd consonant" do
+      assert_equal "RSSVNT80A01F205L",
+                   Encoder.new(
+                     surname: "Rossi",
+                     name: "Valentino",
+                     gender: "M",
+                     birthdate: "1980-01-01",
+                     birthplace: "Milano"
+                   ).encode
+    end
+
     test "#encode for foreign countries" do
       assert_equal "BRRDRN70M41Z602D",
                    Encoder.new(
