@@ -78,7 +78,7 @@ ItaxCode.decode(tax_code) #=> Hash:
 #   code:       String,          # the input code, upcased
 #   gender:     "M" | "F",
 #   birthdate:  String,          # "YYYY-MM-DD"
-#   birthplace: {                # nil if not found in either CSV
+#   birthplace: {                # raises InvalidTaxCodeError if not found in either CSV
 #     code:       String,        # e.g. "F205"
 #     province:   String,        # e.g. "MI"
 #     name:       String,        # e.g. "MILANO"

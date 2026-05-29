@@ -29,9 +29,8 @@ module ItaxCode
       end
     end
 
-    # FIXME: This behaviour needs to be fixed, maybe by raising an InvalidTaxCodeError.
-    test "returns nil birthplace when the lookup on both cities and countries fails" do
-      assert_nil klass.new("BRRDRN70M41ZXXXE").decode[:birthplace]
+    test "raises InvalidTaxCodeError when birthplace code is not found in cities or countries" do
+      assert_raises(klass::InvalidTaxCodeError) { klass.new("BRRDRN70M41ZXXXE").decode }
     end
 
     test "raises NoTaxCodeError with an empty tax code" do

@@ -92,10 +92,12 @@ module ItaxCode
         place = src.find { |item| item["code"] == birthplace_code && in_dates?(item) }
 
         if place.nil?
-          birthplace(utils.countries, stop: true) unless stop
-        else
-          place.to_h.transform_keys(&:to_sym)
+          return birthplace(utils.countries, stop: true) unless stop
+
+          raise InvalidTaxCodeError
         end
+
+        place.to_h.transform_keys(&:to_sym)
       end
 
       def birthplace_code
