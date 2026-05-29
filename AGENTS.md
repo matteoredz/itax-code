@@ -64,13 +64,13 @@ Supporting classes:
 
 ```ruby
 # Encode — generate a tax code from personal data
-ItaxCode.encode(
-  surname:    String,           # required
-  name:       String,           # required
-  gender:     "M" | "F",        # required
-  birthdate:  String|Date|Time, # required — String parsed via Date.parse
-  birthplace: String            # required — city name OR 4-char Belfiore code
-) #=> String  (e.g. "RSSMRA80A01F205X")
+ItaxCode.encode({
+  surname:    String,         # required
+  name:       String,         # required
+  gender:     "M" | "F",      # required
+  birthdate:  String | Date,  # required — String parsed via Date.parse
+  birthplace: String          # required — city name OR 4-char Belfiore code
+}) #=> String  (e.g. "RSSMRA80A01F205X")
 
 # Decode — parse a tax code into components
 ItaxCode.decode(tax_code) #=> Hash:
@@ -113,7 +113,7 @@ ItaxCode::Error (< StandardError)
 │   └── InvalidBirthdateError   — birthdate string cannot be parsed by Date.parse
 └── ItaxCode::Parser::Error
     ├── NoTaxCodeError          — input is nil or blank
-    ├── InvalidTaxCodeError     — not 16 chars
+    ├── InvalidTaxCodeError     — length is not exactly 16 characters
     ├── InvalidControlInternalNumberError  — CIN checksum mismatch
     └── DateTaxCodeError        — decoded date is impossible (e.g. Feb 30)
 ```
