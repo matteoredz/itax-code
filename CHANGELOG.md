@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.8](https://github.com/matteoredz/itax-code/compare/v2.0.7...v2.0.8) (2026-05-29)
+
+
+### Documentation
+
+* add AGENTS.md and CLAUDE.md ([#70](https://github.com/matteoredz/itax-code/issues/70)) ([b5aceb7](https://github.com/matteoredz/itax-code/commit/b5aceb7de0a82ac5411f52c32608aae466cf9db6))
+
 ## [2.0.7](https://github.com/matteoredz/itax-code/compare/v2.0.6...v2.0.7) (2026-01-11)
 
 
