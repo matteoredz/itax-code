@@ -54,9 +54,61 @@ module ItaxCode
                    ).encode
     end
 
+    test "#encode for female gender applies +40 day offset" do
+      assert_equal "RSSMRA80A41F205B",
+                   Encoder.new(
+                     surname: "Rossi",
+                     name: "Mario",
+                     gender: "F",
+                     birthdate: "1980-01-01",
+                     birthplace: "Milano"
+                   ).encode
+    end
+
     test "#encode raises MissingDataError on missing data" do
       assert_raises Encoder::MissingDataError do
         Encoder.new.encode
+      end
+    end
+
+    test "#encode raises MissingDataError on missing surname" do
+      assert_raises(Encoder::MissingDataError) do
+        Encoder.new(
+          surname: nil, name: "Mario", gender: "M", birthdate: "1980-01-01", birthplace: "Milano"
+        )
+      end
+    end
+
+    test "#encode raises MissingDataError on missing name" do
+      assert_raises(Encoder::MissingDataError) do
+        Encoder.new(
+          surname: "Rossi", name: nil, gender: "M", birthdate: "1980-01-01", birthplace: "Milano"
+        )
+      end
+    end
+
+    test "#encode raises MissingDataError on missing gender" do
+      assert_raises(Encoder::MissingDataError) do
+        Encoder.new(
+          surname: "Rossi", name: "Mario", gender: nil,
+          birthdate: "1980-01-01", birthplace: "Milano"
+        )
+      end
+    end
+
+    test "#encode raises MissingDataError on missing birthdate" do
+      assert_raises(Encoder::MissingDataError) do
+        Encoder.new(
+          surname: "Rossi", name: "Mario", gender: "M", birthdate: nil, birthplace: "Milano"
+        )
+      end
+    end
+
+    test "#encode raises MissingDataError on missing birthplace field" do
+      assert_raises(Encoder::MissingDataError) do
+        Encoder.new(
+          surname: "Rossi", name: "Mario", gender: "M", birthdate: "1980-01-01", birthplace: nil
+        )
       end
     end
 

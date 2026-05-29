@@ -61,6 +61,45 @@ module ItaxCode
       end
     end
 
+    test "raises InvalidTaxCodeError when birthdate falls outside city validity window" do
+      # Stub cities to expose a single F205 entry whose window excludes birthdate 1980-01-01
+      stub_city = { "code" => "F205", "province" => "MI", "name" => "MILANO",
+                    "created_on" => "1960-01-01", "deleted_on" => "1975-12-31" }
+      Utils.stubs(:cities).returns([stub_city])
+      Utils.stubs(:countries).returns([])
+      # in_dates? returns false (1980-01-01 > deleted_on) → F205 not matched in cities
+      # F205 not in countries either → raises InvalidTaxCodeError
+      assert_raises(klass::InvalidTaxCodeError) { klass.new("RSSMRA80A01F205X").decode }
+    end
+
+    test "decodes a birthdate in the current year" do
+      Timecop.freeze(Date.parse("2026-06-01")) do
+        # year "26" → 20+26=2026, 2026 <= 2026 → 2026 (not 1926)
+        assert_equal "2026-01-01", klass.new("RSSMRA26A01L219E").decode[:birthdate]
+      end
+    end
+
+    test "decodes a birthdate as 1927 when current year is 2026 and year code is 27" do
+      Timecop.freeze(Date.parse("2026-06-01")) do
+        # year "27" → 20+27=2027, 2027 > 2026 → 2027-100 = 1927
+        assert_equal "1927-01-01", klass.new("RSSMRA27A01L219F").decode[:birthdate]
+      end
+    end
+
+    test "decodes day 31 as male gender with day 31" do
+      result = klass.new("RSSMRA80A31L219P").decode
+
+      assert_equal "M",          result[:gender]
+      assert_equal "1980-01-31", result[:birthdate]
+    end
+
+    test "decodes day 41 as female gender with day 1" do
+      result = klass.new("RSSMRA80A41F205B").decode
+
+      assert_equal "F",          result[:gender]
+      assert_equal "1980-01-01", result[:birthdate]
+    end
+
     private
 
       def klass

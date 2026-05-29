@@ -27,6 +27,33 @@ class ItaxCodeTest < Minitest::Test
     refute klass.valid?("WRONG")
   end
 
+  test "encode/decode round-trip for male" do
+    result = klass.decode(klass.encode(surname: "Rossi", name: "Mario", gender: "M",
+                                       birthdate: "1980-01-01", birthplace: "Milano"))
+
+    assert_equal "M",          result[:gender]
+    assert_equal "1980-01-01", result[:birthdate]
+    assert_equal "F205",       result[:birthplace][:code]
+  end
+
+  test "encode/decode round-trip for female (day offset)" do
+    result = klass.decode(klass.encode(surname: "Rossi", name: "Mario", gender: "F",
+                                       birthdate: "1980-01-01", birthplace: "Milano"))
+
+    assert_equal "F",          result[:gender]
+    assert_equal "1980-01-01", result[:birthdate]
+    assert_equal "F205",       result[:birthplace][:code]
+  end
+
+  test "encode/decode round-trip for foreign birthplace" do
+    result = klass.decode(klass.encode(surname: "Berardi", name: "Adriana", gender: "F",
+                                       birthdate: "1970-08-01", birthplace: "Brasile"))
+
+    assert_equal "F",          result[:gender]
+    assert_equal "1970-08-01", result[:birthdate]
+    assert_equal "Z602",       result[:birthplace][:code]
+  end
+
   private
 
     def klass
